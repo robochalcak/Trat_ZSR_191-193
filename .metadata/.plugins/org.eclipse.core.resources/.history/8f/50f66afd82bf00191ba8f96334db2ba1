@@ -1,0 +1,26 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+/**
+ * Program spusta dve vlakna, jedno ma na starosti vklady a durhe vybery.
+ * Obe vlakna pracuju s tym istym uctom (zdielaju spolocne vlakna).
+ * @author Robert Chalcak
+ *
+ */
+public class BankovyUcetTester
+{
+
+   public static void main(String[] args)
+   {
+      BankovyUcet ucet = new BankovyUcet();
+      
+      final double ciastka = 1000;
+      final int POCET_OPAKOVANI=100;
+      final int POCET_VLAKIEN = 100;
+      
+      for(int i = 1; i <=POCET_VLAKIEN;i++)
+      {
+         Vklad vklad = new Vklad(ucet, ciastka,POCET_OPAKOVANI);
+      }
+
+   }
+
+}

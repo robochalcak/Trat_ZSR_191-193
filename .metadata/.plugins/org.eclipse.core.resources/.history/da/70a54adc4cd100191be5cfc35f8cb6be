@@ -1,0 +1,145 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+
+import zaverecnyProjekt.datum.Datum;
+
+public class RegistraciaZamestnanca extends JFrame
+{
+
+   private JPanel contentPane;
+   private JTextField txtMeno;
+   private JTextField txtPriezvisko;
+   private Datum datum;
+
+   /**
+    * Launch the application.
+    */
+   public static void main(String[] args)
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               RegistraciaZamestnanca frame = new RegistraciaZamestnanca();
+               frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the frame.
+    */
+   public RegistraciaZamestnanca()
+   {
+      datum = new Datum();
+      
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setBounds(100, 100, 720, 420);
+      contentPane = new JPanel();
+      contentPane.setForeground(Color.DARK_GRAY);
+      contentPane.setBackground(Color.WHITE);
+      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      setContentPane(contentPane);
+      contentPane.setLayout(null);
+      
+      JPanel panel = new JPanel();
+      panel.setBackground(UIManager.getColor("CheckBox.darkShadow"));
+      panel.setBounds(0, 0, 249, 381);
+      contentPane.add(panel);
+      panel.setLayout(null);
+      
+      JLabel lblImg = new JLabel("New label");
+      lblImg.setBounds(-507, 0, 756, 381);
+      panel.add(lblImg);
+      lblImg.setIcon(new ImageIcon(RegistraciaZamestnanca.class.getResource("/images/registracia.jpg")));
+      
+      txtMeno = new JTextField();
+      txtMeno.setForeground(UIManager.getColor("Button.disabledForeground"));
+      txtMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtMeno.setBounds(271, 51, 381, 63);
+      contentPane.add(txtMeno);
+      txtMeno.setColumns(10);
+      
+      txtPriezvisko = new JTextField();
+      txtPriezvisko.setForeground(SystemColor.textInactiveText);
+      txtPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtPriezvisko.setColumns(10);
+      txtPriezvisko.setBounds(271, 182, 381, 63);
+      contentPane.add(txtPriezvisko);
+      
+      JLabel lblMeno = new JLabel("Zadajte meno zamestnanca");
+      lblMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+      lblMeno.setForeground(UIManager.getColor("Button.disabledForeground"));
+      lblMeno.setBounds(271, 5, 293, 35);
+      contentPane.add(lblMeno);
+      
+      JLabel lblPriezvisko = new JLabel("Zadajte priezvisko zamestnanca");
+      lblPriezvisko.setForeground(SystemColor.textInactiveText);
+      lblPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+      lblPriezvisko.setBounds(271, 136, 293, 35);
+      contentPane.add(lblPriezvisko);
+      
+      JButton btnRegistracia = new JButton("Pridať zamestnanca ");
+      btnRegistracia.setBackground(new Color (241, 57,83));
+      btnRegistracia.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnRegistracia.setForeground(Color.DARK_GRAY);
+      btnRegistracia.setBounds(271, 266, 201, 49);
+      contentPane.add(btnRegistracia);
+      
+      JButton btnPrihlsiSa = new JButton("Prihlásiť sa  ");
+      btnPrihlsiSa.setForeground(Color.DARK_GRAY);
+      btnPrihlsiSa.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnPrihlsiSa.setBackground(new Color(241, 57, 83));
+      btnPrihlsiSa.setBounds(482, 266, 170, 49);
+      contentPane.add(btnPrihlsiSa);
+      
+      JLabel lblDen = new JLabel("New label");
+      lblDen.setForeground(Color.DARK_GRAY);
+      lblDen.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblDen.setBounds(445, 351, 46, 30);
+      lblDen.setText(datum.getDen()+"");
+      contentPane.add(lblDen);
+      
+      JLabel lblMesiac = new JLabel("New label");
+      lblMesiac.setForeground(Color.DARK_GRAY);
+      lblMesiac.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblMesiac.setBounds(513, 351, 46, 30);
+      lblMesiac.setText(datum.getNazovMesiaca());
+      contentPane.add(lblMesiac);
+      
+      JLabel lblRok = new JLabel("New label");
+      lblRok.setForeground(Color.DARK_GRAY);
+      lblRok.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblRok.setBounds(584, 351, 46, 30);
+      lblRok.setText(datum.getRok()+"");
+      contentPane.add(lblRok);
+      
+      JLabel lblCas = new JLabel("New label");
+      lblCas.setForeground(Color.DARK_GRAY);
+      lblCas.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblCas.setBounds(271, 351, 112, 30);
+      lblCas.setText(datum.toStringCas());
+      contentPane.add(lblCas);
+   }
+
+}

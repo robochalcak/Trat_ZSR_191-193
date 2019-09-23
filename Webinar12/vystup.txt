@@ -1,0 +1,6 @@
+/* 1 */jeden
+/* 2 */dva
+/* 3 */tri
+/* 4 */styri
+/* 5 */pat
+/* 6 */nejaky posledny riadok v subore

@@ -1,0 +1,47 @@
+2. Vysvetlite a demonstrujte na priklade, co to je getter a setter.
+
+Trieda Osoba
+{
+	Objekt je instancia triedy (instancia nam vznika ked zavolame konstruktor triedy pomocou klucoveho slova new Osoba("Igor")
+	
+	Kazdy objektma stav a spravanie 
+	
+	Stav objektu je reprezentovany hodnotami instancnych premennych (field, atributov)
+	
+	Spravanie objektu je reprezentovane pomocou metod(verejnych).
+	
+	Zapuzdrenie (Encapsulation) - ukryva stav objektu pred okolitym svetom - instancne premenne su private.
+	
+	Ak vznikne poziadavka na spristupnenie stav objektu (instancne hodnoty musimedoprogramovat metody getre a settre
+	
+	Getter metoda  - vrati hodnotu jednej instancnej premennej;
+	Setter metoda - nastavuje novu hodnotu danej instancnej premennej.
+	
+	Osoba 
+	-private int vek;
+	-private String meno;
+	
+	//getter pre instancnu premennu vek
+	public int getVek()
+	{
+		return vek;
+	}
+	
+	public void setVek(int vek)
+	{
+		this.vek=vek;
+	}
+	//getter pre instancnu premennu meno
+	
+	public String getMeno()
+	{
+		return meno;
+	}
+	
+	//setter pre instancnu premennu memo
+	
+	public void setMeno(String meno)
+	{
+		this.meno=meno;
+	}
+}

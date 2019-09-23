@@ -1,0 +1,5 @@
+/*
+ * This code is for Internal Salesforce use only, and subject to change without notice.
+ * Customers shouldn't reference this file in any web pages.
+ */
+.codemirror_completions{padding:3px;position:absolute;z-index:1000;overflow:hidden;border:1px solid grey;padding:0;min-width:300px;-webkit-box-shadow:2px 3px 5px rgba(0,0,0,.2);-moz-box-shadow:2px 3px 5px rgba(0,0,0,.2);box-shadow:2px 3px 5px rgba(0,0,0,.2)}.codemirror_completions select{background:#fafafa;outline:none;border:none;padding:5px;min-width:300px;width :100%;margin:0;font-family:monospace}.codemirror_completions .error{background:#fafafa;color :red;padding :5px}

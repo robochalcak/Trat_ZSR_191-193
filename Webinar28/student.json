@@ -1,0 +1,10 @@
+{
+	"meno": "Peter Novak",
+	"vek":25,"pozicia": ["Riaditel","CTO","Sales Manager"],
+	"plat":
+	{
+		"2016":15000, 
+		"2017":16500,
+		"2018":18000
+	}
+}

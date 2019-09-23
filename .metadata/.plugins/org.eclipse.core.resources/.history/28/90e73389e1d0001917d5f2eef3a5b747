@@ -1,0 +1,46 @@
+package databazaTest;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUctyAdapter;
+import zaverecnyProjekt.klienti.Klient;
+import zaverecnyProjekt.klienti.Klienti;
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class DatabazaTest
+{
+
+   public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException
+   {
+      KlientiAdapter adapterKl = new KlientiAdapter();
+      BankoveUctyAdapter adapterBu = new BankoveUctyAdapter();
+     
+      
+      try
+      {
+        // adapterKl.vytvorSpojenieSDB();
+         adapterBu.vytvorSpojenieSDB();
+         
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+      
+      //adapterKl.ulozDB();
+      
+      adapterBu.ulozDB();
+      
+     // adapterKl.nacitajCeluDB();
+    //  adapterKl.zrusSpojenie();
+      adapterBu.nacitajCeluDB();
+      adapterBu.zrusSpojenie();
+      
+      
+      
+
+   }
+
+}

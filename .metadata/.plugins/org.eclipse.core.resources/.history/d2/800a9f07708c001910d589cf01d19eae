@@ -1,0 +1,10 @@
+package sk.itvkurze.webinar07.jednorozmernePole;
+
+public class JednoRozmernePole
+{
+   public static void main(String[]args)
+   {
+      
+      
+   }
+}

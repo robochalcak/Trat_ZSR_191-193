@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;sk.itvkurze.webinar19.gui_06&apos; to &apos;Webinar20/src&apos;&#x0D;&#x0A;- Original project: &apos;Webinar19&apos;&#x0D;&#x0A;- Destination element: &apos;Webinar20/src&apos;&#x0D;&#x0A;- Original element: &apos;Webinar19/src/sk.itvkurze.webinar19.gui_06&apos;" description="Copy package" destination="=Webinar20/src" element1="/src&lt;sk.itvkurze.webinar19.gui_06" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1564677671631" version="1.0"/>
+</session>

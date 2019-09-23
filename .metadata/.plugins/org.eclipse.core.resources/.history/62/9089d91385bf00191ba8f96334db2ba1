@@ -1,0 +1,55 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class BankovyUcet2
+{
+   private double aktualnyZostatok;
+
+   public BankovyUcet2()
+   {
+      this.aktualnyZostatok = 0;
+      this.zamokZmenenyZostatok = new ReentrantLock();
+      this.dostatokProstriedkovNaUcte = zamokZmenenyZostatok.newCondition();
+
+   }
+
+   public double getAktualnyZostatok()
+   {
+      return aktualnyZostatok;
+   }
+
+   public synchronized void vloz(double ciastka)
+   {
+      zamokZmenenyZostatok.lock();
+      try
+      {
+         System.out.println("Vklad "+ciastka+ " Eur.");
+         double novyZostatok = aktualnyZostatok + ciastka;
+         System.out.println(", novy zostatok je "+novyZostatok + " Eur.");
+         this.aktualnyZostatok += ciastka;
+      }
+      finally
+      {
+         zamokZmenenyZostatok.unlock();
+      }
+   }
+
+   public void vyber(double ciastka)
+   {
+      zamokZmenenyZostatok.lock();
+      try
+      {
+         System.out.println("Vklad "+ciastka+ " Eur.");
+         double novyZostatok = aktualnyZostatok - ciastka;
+         System.out.println(", novy zostatok je "+novyZostatok + " Eur.");
+         this.aktualnyZostatok -= ciastka;
+      }
+      finally
+      {
+         zamokZmenenyZostatok.unlock();
+      }
+   }
+}

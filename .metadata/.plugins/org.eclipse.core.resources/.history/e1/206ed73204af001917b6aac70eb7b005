@@ -1,0 +1,12 @@
+package sk.itvkurze.webinar18.neohraniceny_typ;
+
+public class ZolikTest
+{
+
+   public static void main(String[] args)
+   {
+      // TODO Auto-generated method stub
+
+   }
+
+}

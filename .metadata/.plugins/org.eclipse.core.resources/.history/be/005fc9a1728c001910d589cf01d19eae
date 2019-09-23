@@ -1,0 +1,14 @@
+package sk.itvkurze.webinar07.jednorozmernePole;
+
+public class ArrayUtil
+{
+   //vytvor metodu, ktora vypise prvky pola a metoda prijma parameter cisiel 
+   
+   public void vypisCisla(int[]cisla)
+   {
+      for(int cislo:cisla)
+      {
+         System.out.println(cislo);
+      }
+   }
+}

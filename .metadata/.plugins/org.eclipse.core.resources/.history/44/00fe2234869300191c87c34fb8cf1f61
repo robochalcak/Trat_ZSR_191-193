@@ -1,0 +1,12 @@
+package sk.itvkurze.webinar08.inicializacny_blok;
+
+public class InicializacnyBlokTester
+{
+
+   public static void main(String[] args)
+   {
+      InicializacnyBlok initBlok = new InicializacnyBlok();
+
+   }
+
+}

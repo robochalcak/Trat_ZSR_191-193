@@ -1,0 +1,12 @@
+
+public class Main 
+{
+	public static void main(String[]args)
+	{
+		System.out.println("Programovanie v jave nas bavi");
+		System.out.println(15);
+		System.out.println("Nejaky text");
+		System.out.println("-dalsi text");
+	}
+}
+

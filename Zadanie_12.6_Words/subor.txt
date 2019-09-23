@@ -1,0 +1,10 @@
+class
+apple
+banana
+anglish
+fisk
+fish
+commputer
+computer
+jaba
+java

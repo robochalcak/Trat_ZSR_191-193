@@ -1,0 +1,290 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUcty;
+import zaverecnyProjekt.bankovyUcet.BankovyUcet;
+import zaverecnyProjekt.datum.Datum;
+import zaverecnyProjekt.klienti.Klient;
+import zaverecnyProjekt.klienti.Klienti;
+
+/**
+ * Trieda sluzi na vyhladavanie, nacitavanie klientov z internych suborov
+ * systemu, z externych suborov a databaz.
+ * 
+ * @author Robert Chalcak
+ */
+public class Vyhladavanie
+{
+
+   private JFrame frame;
+   private JTextField txtPriezvisko;
+   private JTextField txtRc;
+   private Datum datum;
+
+   /**
+    * Launch the application.
+    */
+   public static void pracaSUctom()
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               Vyhladavanie window = new Vyhladavanie();
+               window.frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the application.
+    */
+   public Vyhladavanie()
+   {
+      initialize();
+   }
+
+   /**
+    * Initialize the contents of the frame.
+    */
+   private void initialize()
+   {
+      datum = new Datum();
+      frame = new JFrame();
+      frame.getContentPane().setBackground(Color.WHITE);
+      frame.getContentPane().setFont(new Font("Verdana", Font.BOLD, 15));
+      // frame.setBounds(100, 100, 450, 300);
+      frame.setBounds(100, 100, 721, 420);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setTitle("Práca s klientmi a s účtami");
+
+      JLabel lblPrezvisko = new JLabel("Zadajte Priezvisko Klienta:");
+      lblPrezvisko.setForeground(Color.DARK_GRAY);
+      lblPrezvisko.setBounds(431, 76, 272, 41);
+      lblPrezvisko.setFont(new Font("Verdana", Font.BOLD, 13));
+
+      txtPriezvisko = new JTextField();
+      txtPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtPriezvisko.setForeground(Color.DARK_GRAY);
+      txtPriezvisko.setBounds(431, 110, 261, 47);
+      txtPriezvisko.setColumns(10);
+
+      JLabel lblZadajRodneCislo = new JLabel("Zadajte Rodne číslo klienta:");
+      lblZadajRodneCislo.setForeground(Color.DARK_GRAY);
+      lblZadajRodneCislo.setBounds(431, 173, 209, 17);
+      lblZadajRodneCislo.setFont(new Font("Verdana", Font.BOLD, 13));
+
+      txtRc = new JTextField();
+      txtRc.setForeground(Color.DARK_GRAY);
+      txtRc.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtRc.setBounds(431, 193, 261, 44);
+      txtRc.setColumns(10);
+
+      JButton btnHladaj = new JButton("Vyhľadať");
+      btnHladaj.setForeground(Color.DARK_GRAY);
+      btnHladaj.setBounds(431, 248, 261, 44);
+      btnHladaj.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnHladaj.setBackground(new Color(241, 57, 83));
+      btnHladaj.addActionListener(new ActionListener()
+
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+
+            if (txtPriezvisko.getText().length() == 0
+                  || txtRc.getText().length() == 0)
+            {
+               JOptionPane.showMessageDialog(null,
+                     "Polička nemôžu byť prázdne.");
+            }
+            else
+            {
+
+               String priezvisko = txtPriezvisko.getText();
+               long rodneCislo = Long.parseLong(txtRc.getText());
+               try
+               {
+                  Klienti klienti = new Klienti();
+                  BankoveUcty ucty = new BankoveUcty();
+                  klienti.vyhladajKlienta(priezvisko, rodneCislo);
+                  if (klienti.vyhladajKlienta(priezvisko, rodneCislo).getMeno() == null)
+                  {
+                     JOptionPane.showMessageDialog(null,
+                           "Klient nebol najdeny!");
+                     return;
+                  }
+                  else
+                  {
+                     JOptionPane.showMessageDialog(null, "Klient bol najdeny.");
+                     Klient najdeny = klienti.vyhladajKlienta(priezvisko,
+                           rodneCislo);
+                     BankovyUcet ucet = ucty.vyhladajUcet(priezvisko);
+                     frame.setVisible(false);
+
+                     PracaSUctom pracaSUctom = new PracaSUctom(najdeny, ucet);
+                     pracaSUctom.pracaSUctom(najdeny, ucet);
+                  }
+               }
+               catch (ClassNotFoundException | IOException e1)
+               {
+                  e1.printStackTrace();
+               }
+
+            }
+
+         }
+      });
+
+      JButton btnVytvorUcet = new JButton("Vytvorenie Účtu");
+      btnVytvorUcet.setForeground(Color.DARK_GRAY);
+      btnVytvorUcet.setBounds(431, 35, 261, 45);
+      btnVytvorUcet.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnVytvorUcet.setBackground(new Color(241, 57, 83));
+      btnVytvorUcet.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            frame.setVisible(false);
+            VytvorenieUctu vytvorenie = new VytvorenieUctu();
+            vytvorenie.registruj();
+
+         }
+      });
+
+      JButton btnUlozDB = new JButton("Ulož do DB");
+      btnUlozDB.setForeground(Color.DARK_GRAY);
+      btnUlozDB.setBackground(new Color(241, 57, 83));
+      btnUlozDB.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+         }
+      });
+      btnUlozDB.setBounds(0, 0, 151, 39);
+      btnUlozDB.setFont(new Font("Verdana", Font.BOLD, 15));
+
+      JButton btnNacitajDB = new JButton("Načítaj z DB");
+      btnNacitajDB.setForeground(Color.DARK_GRAY);
+      btnNacitajDB.setBounds(0, 37, 151, 40);
+      btnNacitajDB.setBackground(new Color(241, 57, 83));
+      btnNacitajDB.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnNacitajDB.addActionListener(new ActionListener()
+      {
+         public void actionPerformed(ActionEvent e)
+         {
+            DBTabulka dbTabulka = new DBTabulka();
+            String pass="";
+            String user="";
+            dbTabulka.spustDB();
+         }
+      });
+
+      JButton btnZDisku = new JButton("Načítaj z disku");
+      btnZDisku.setForeground(Color.DARK_GRAY);
+      btnZDisku.setBounds(0, 111, 151, 40);
+      btnZDisku.setBackground(new Color(241, 57, 83));
+      btnZDisku.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnZDisku.addActionListener(new ActionListener()
+      {
+         public void actionPerformed(ActionEvent e)
+         {
+         }
+      });
+
+      JButton btnNaDisk = new JButton("Ulož na disk");
+      btnNaDisk.setForeground(Color.DARK_GRAY);
+      btnNaDisk.setBounds(0, 75, 151, 39);
+      btnNaDisk.setBackground(new Color(241, 57, 83));
+      btnNaDisk.setFont(new Font("Verdana", Font.BOLD, 15));
+
+      JButton btnNewButton = new JButton("Odhlásiť sa");
+      btnNewButton.setForeground(Color.DARK_GRAY);
+      btnNewButton.setBounds(431, 303, 261, 40);
+      btnNewButton.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnNewButton.setBackground(new Color(241, 57, 83));
+      btnNewButton.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            JOptionPane.showMessageDialog(null,
+                  "Teraz budete odhlásený zo systému.");
+            frame.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Aplikácia sa ukončuje.");
+            System.exit(0);
+         }
+
+      });
+      frame.getContentPane().setLayout(null);
+      frame.getContentPane().add(btnNacitajDB);
+      frame.getContentPane().add(btnUlozDB);
+      frame.getContentPane().add(btnNaDisk);
+      frame.getContentPane().add(btnNewButton);
+      frame.getContentPane().add(lblPrezvisko);
+      frame.getContentPane().add(txtPriezvisko);
+      frame.getContentPane().add(btnHladaj);
+      frame.getContentPane().add(btnVytvorUcet);
+      frame.getContentPane().add(btnZDisku);
+      frame.getContentPane().add(lblZadajRodneCislo);
+      frame.getContentPane().add(txtRc);
+      
+      JLabel lblNewLabel = new JLabel("");
+      lblNewLabel.setBounds(53, 193, 478, 150);
+      frame.getContentPane().add(lblNewLabel);
+      lblNewLabel.setIcon(new ImageIcon(Vyhladavanie.class.getResource("/images/cleints.jpg")));
+      
+      JPanel panel = new JPanel();
+      panel.setBackground(Color.DARK_GRAY);
+      panel.setBounds(161, 0, 261, 380);
+      frame.getContentPane().add(panel);
+      
+      JPanel panel_1 = new JPanel();
+      panel_1.setBackground(Color.DARK_GRAY);
+      panel_1.setBounds(0, 162, 161, 218);
+      frame.getContentPane().add(panel_1);
+      
+      JLabel lblDen = new JLabel(datum.getDen()+"");
+      lblDen.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblDen.setBounds(492, 356, 20, 14);
+      frame.getContentPane().add(lblDen);
+      
+      JLabel lblMesiac = new JLabel(datum.getNazovMesiaca());
+      lblMesiac.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblMesiac.setBounds(508, 356, 79, 14);
+      frame.getContentPane().add(lblMesiac);
+      
+      JLabel lblRok = new JLabel(datum.getRok()+"");
+      lblRok.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblRok.setBounds(590, 356, 38, 14);
+      frame.getContentPane().add(lblRok);
+      
+      JLabel lblCas = new JLabel(datum.toStringCas());
+      lblCas.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblCas.setBounds(646, 356, 46, 14);
+      frame.getContentPane().add(lblCas);
+   }
+}

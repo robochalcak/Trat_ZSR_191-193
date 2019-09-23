@@ -1,0 +1,15 @@
+content-types/org.eclipse.cdt.core.asmSource/charset=UTF-8
+content-types/org.eclipse.cdt.core.cSource/charset=UTF-8
+content-types/org.eclipse.compare.wordDoc/charset=UTF-8
+content-types/org.eclipse.core.resources.preferences/charset=UTF-8
+content-types/org.eclipse.egit.contenttype.gitignore/charset=UTF-8
+content-types/org.eclipse.egit.patch/charset=UTF-8
+content-types/org.eclipse.pde.buildProperties/charset=UTF-8
+content-types/org.eclipse.pde.pluginProperties/charset=UTF-8
+content-types/org.eclipse.ui.views.log.log/charset=UTF-8
+content-types/org.eclipse.wb.core.java.javaSourceGUI/charset=UTF-8
+content-types/toadext.editors.content-type/charset=UTF-8
+content-types/toadext.editors.json-editor-content-type/charset=UTF-8
+content-types/toadext.editors.sql-editor-content-type/charset=UTF-8
+content-types/toadext.editors.sql-worksheet-content-type/charset=UTF-8
+eclipse.preferences.version=1

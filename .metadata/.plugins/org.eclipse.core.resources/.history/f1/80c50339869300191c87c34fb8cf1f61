@@ -1,0 +1,9 @@
+package sk.itvkurze.webinar08.inicializacny_blok;
+
+public class Trieda1
+{
+   public Trieda1()
+   {
+      
+   }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<klienti>
+	<klient id="1">
+		<meno>Jaroslav</meno>
+		<priezvisko>Tichy</priezvisko>
+		<rodneCislo>123456</rodneCislo>
+	</klient>
+	<klient id="2">
+		<meno>Igor</meno>
+		<priezvisko>Biely</priezvisko>
+		<rodneCislo>123456</rodneCislo>
+	</klient>
+
+</klienti>

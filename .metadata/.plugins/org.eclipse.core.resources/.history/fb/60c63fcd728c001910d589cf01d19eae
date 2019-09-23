@@ -1,0 +1,40 @@
+package sk.itvkurze.webinar07.jednorozmernePole;
+
+public class JednoRozmernePole
+{
+   public static void main(String[]args)
+   {
+      //vytvor pole 5 prvkov (74,34,1,9,0)
+      
+      int[]poleCisiel = new int[5]; // definovali sme pole o velkosti 5 prvkov typu int
+      
+      poleCisiel[0]=74;
+      poleCisiel[1]=34;
+      poleCisiel[2]=1;
+      poleCisiel[3]=9;
+      poleCisiel[4]=0;
+      
+      //vytvor pole 3 prvkov typu String (Peter Novak, Karol Maly, Zdeno Stastny)
+      String[]nazvyMien = new String[]{"Peter Novak", "Karol Maly", "Zdeno Stastny"};
+      String[]nazvyMien2 ={"Peter Novak", "Karol Maly", "Zdeno Stastny"};
+      
+      //vypids (zobraz na standardny vystup)prvky pola poleCisiel, kazde cislo na novom riadku
+      
+      for(int cislo:poleCisiel)
+      {
+         System.out.println(cislo);
+      }
+      System.out.println("-----------------------pomocout metody ArrayUtil");
+      
+      ArrayUtil util = new ArrayUtil();
+      
+      util.vypisCisla(poleCisiel);
+      
+      System.out.println("----------------------------pomocou metody ArrayUtil.vypisPole1()---------");
+      
+      util.vypisCisla2(poleCisiel);
+      
+      
+      
+   }
+}

@@ -1,0 +1,184 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUctyAdapter;
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class CitacZDisku extends JFrame
+{
+   private File xmlSubor;
+   /**
+    * Launch the application.
+    */
+   public static void main(String[] args)
+   {
+      
+      
+      
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+                                       
+               CitacZDisku frame = new CitacZDisku();
+               frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the frame.
+    */
+   public CitacZDisku()
+   {
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setBounds(100, 100, 750, 450);
+      getContentPane().setLayout(null);
+      
+      JPanel panel = new JPanel();
+      panel.setBounds(336, 0, 398, 411);
+      getContentPane().add(panel);
+      panel.setLayout(null);
+      
+      JButton btnXMLCitaj = new JButton("Načítaj Klientov z xml súboru ");
+      btnXMLCitaj.setForeground(Color.DARK_GRAY);
+      btnXMLCitaj.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnXMLCitaj.setBackground(new Color(241, 57, 83));
+      btnXMLCitaj.setBounds(10, 11, 378, 62);
+      btnXMLCitaj.addActionListener(new ActionListener()
+      {
+         
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            try
+            {
+               
+               KlientiAdapter klienti = new KlientiAdapter();
+               String xmlSuborKlienti =(JOptionPane.showInputDialog("Zadajte názov súboru XML s klientmi bez koncovky, alebo jeho cestu.\nPríklad   C://document//klienti, kde klienti je názov súboru")+".xml");
+              
+               klienti.nacitajZXML(xmlSuborKlienti);             
+               
+            }
+            catch (ClassNotFoundException | IOException e1)
+            {
+               JOptionPane.showMessageDialog(null, "Zadany subor neexsistuje");
+               e1.printStackTrace();
+            }
+            
+            
+            
+         }
+      });
+      panel.add(btnXMLCitaj);
+      
+      JButton btnUlozXML = new JButton("Ulož všetkých klientov do xml súboru ");
+      btnUlozXML.addActionListener(new ActionListener() 
+      {
+         public void actionPerformed(ActionEvent e) 
+         {
+            KlientiAdapter adapter = new KlientiAdapter();
+            try
+            {
+               adapter.exportujDoXML();
+            }
+            catch (ClassNotFoundException | IOException e1)
+            {
+               
+               e1.printStackTrace();
+            }
+         }
+      });
+      btnUlozXML.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnUlozXML.setForeground(Color.DARK_GRAY);
+      btnUlozXML.setBackground(new Color(241, 57, 83));
+      btnUlozXML.setBounds(10, 85, 378, 62);
+      panel.add(btnUlozXML);
+      
+      JButton btnNatajUctyZ = new JButton("Načítaj Ucty z xml súboru ");
+      btnNatajUctyZ.setForeground(Color.DARK_GRAY);
+      btnNatajUctyZ.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnNatajUctyZ.setBackground(new Color(241, 57, 83));
+      btnNatajUctyZ.setBounds(10, 158, 378, 62);
+      btnNatajUctyZ.addActionListener(new ActionListener()
+      {
+         
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            try
+            {
+            BankoveUctyAdapter ucty = new BankoveUctyAdapter();
+            String xmlSuborUcty =(JOptionPane.showInputDialog("Zadajte názov súboru XML s klientmi bez koncovky, alebo jeho cestu.\nPríklad   C://document//ucty, kde ucty je názov súboru")+".xml");
+            ucty.nacitajZXML(xmlSuborUcty);
+            }
+            catch (ClassNotFoundException | IOException e1)
+            {
+               JOptionPane.showMessageDialog(null, "Zadany subor neexsistuje");
+               e1.printStackTrace();
+            }
+         }
+      });
+      panel.add(btnNatajUctyZ);
+      
+      JButton button = new JButton("Načítaj Klientov z JSON súboru ");
+      button.addActionListener(new ActionListener() 
+      {
+         public void actionPerformed(ActionEvent arg0) 
+         {
+            KlientiAdapter adapter = new KlientiAdapter();
+            String subor=JOptionPane.showInputDialog("Zadajte nazov suboru JSON: ")+".json";
+            try
+            {
+               adapter.nacitajJSON(subor);
+            }
+            catch (ClassNotFoundException e)
+            {
+               
+               e.printStackTrace();
+            }
+            catch (IOException e)
+            {
+               
+               JOptionPane.showMessageDialog(null, "Hladany subor "+subor+" sa nenasiel skuste to znova.");
+               return;
+            }
+         }
+      });
+      button.setForeground(Color.DARK_GRAY);
+      button.setFont(new Font("Verdana", Font.BOLD, 15));
+      button.setBackground(new Color(241, 57, 83));
+      button.setBounds(10, 231, 378, 62);
+      panel.add(button);
+      
+      JButton btnExportujKlientovDo = new JButton("Exportuj Klientov do JSON súboru ");
+      btnExportujKlientovDo.setForeground(Color.DARK_GRAY);
+      btnExportujKlientovDo.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnExportujKlientovDo.setBackground(new Color(241, 57, 83));
+      btnExportujKlientovDo.setBounds(10, 304, 378, 62);
+      panel.add(btnExportujKlientovDo);
+      
+   }  
+    
+      
+}

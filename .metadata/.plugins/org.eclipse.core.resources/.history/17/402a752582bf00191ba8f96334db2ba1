@@ -1,0 +1,13 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+public class Vklad implements Runnable
+{
+
+   public Vklad(BankovyUcet ucet, double ciastka, int pOCET_OPAKOVANI)
+   {
+      this.ucet = ucet;
+      this.ciastka = ciastka;
+      this.pocetOpakovani=pocetOpakovani;
+   }
+
+}

@@ -1,0 +1,5 @@
+/*
+ * This code is for Internal Salesforce use only, and subject to change without notice.
+ * Customers shouldn't reference this file in any web pages.
+ */
+.Console{border:1px solid black;position:absolute;bottom:0;left:0;font-family:"Lucida Console",Monaco,monospace;font-size:1em;overflow-y:scroll;overflow-x:hidden;text-wrap:unrestricted;z-index:5000;background-color:rgba(255,255,255,.87)}.Console-output{}.Console-output .outputline{padding:3px}.Console-input{bottom:0}.Console-inputMarker{float:left;padding-left:3px;padding-top:3px}.Console textarea{float:left;border:0 solid black;font-family:"Lucida Console",Monaco,monospace;font-size:1em;outline:none;white-space:wrap;background-color:inherit;padding:3px;resize:none}.noscroll{overflow:hidden}

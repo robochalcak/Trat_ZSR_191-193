@@ -1,0 +1,16 @@
+package databazaTest;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUctyAdapter;
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class DatabazaTest
+{
+
+   public static void main(String[] args)
+   {
+      KlientiAdapter adapterKl = new KlientiAdapter();
+      BankoveUctyAdapter adapterBu = new BankoveUctyAdapter();
+
+   }
+
+}

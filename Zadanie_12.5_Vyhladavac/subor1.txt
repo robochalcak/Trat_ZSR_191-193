@@ -1,0 +1,3 @@
+Vyhladavac.java: public class Vyhladavac
+BankovyUcet.java: public class BankovyUcet
+Banka.java: public class Banka

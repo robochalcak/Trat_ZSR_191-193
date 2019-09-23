@@ -1,0 +1,345 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUcty;
+import zaverecnyProjekt.bankovyUcet.BankovyUcet;
+import zaverecnyProjekt.datum.Datum;
+import zaverecnyProjekt.hlavnaKonzola.MainMetoda;
+import zaverecnyProjekt.klienti.Klient;
+import zaverecnyProjekt.klienti.Klienti;
+/**
+ * Tato trieda sluzi na vytvorenie uctu, registraciu klienta a vkladu na ucet
+ * @author Robert Chalcak
+ *
+ */
+public class VytvorenieUctu
+{
+
+   private JFrame frame;
+   private JTextField txtPriezvisko;
+   private JTextField txtMeno;
+   private JTextField txtRC;
+   private Datum datum;
+
+   /**
+    * Launch the application.
+    */
+   public void registruj()
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               VytvorenieUctu window = new VytvorenieUctu();
+               window.frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the application.
+    */
+   public VytvorenieUctu()
+   {
+      initialize();
+   }
+
+   /**
+    * Initialize the contents of the frame.
+    */
+   private void initialize()
+   {
+      datum = new Datum();
+      frame = new JFrame();
+      frame.getContentPane().setBackground(Color.WHITE);
+      frame.setBounds(100, 100, 1001, 721);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setTitle("Registrácia klienta a účtu");
+      JLabel lblRegistraciaNovehoKlienta = new JLabel(
+            "Registrácia nového klienta");
+      lblRegistraciaNovehoKlienta.setForeground(Color.DARK_GRAY);
+      lblRegistraciaNovehoKlienta.setBounds(445, 11, 434, 23);
+      lblRegistraciaNovehoKlienta.setFont(new Font("Verdana", Font.BOLD, 20));
+
+      txtPriezvisko = new JTextField();
+      txtPriezvisko.setForeground(Color.DARK_GRAY);
+      txtPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtPriezvisko.setBounds(668, 90, 281, 43);
+      txtPriezvisko.setColumns(10);
+
+      JLabel lblRegistraciaUctu = new JLabel("Registrácia účtu");
+      lblRegistraciaUctu.setForeground(Color.DARK_GRAY);
+      lblRegistraciaUctu.setBounds(445, 367, 434, 23);
+      lblRegistraciaUctu.setFont(new Font("Verdana", Font.BOLD, 20));
+
+      JLabel label = new JLabel("");
+      label.setBounds(18, 316, 0, 0);
+      frame.getContentPane().setLayout(null);
+      frame.getContentPane().add(lblRegistraciaNovehoKlienta);
+      frame.getContentPane().add(txtPriezvisko);
+      frame.getContentPane().add(lblRegistraciaUctu);
+      frame.getContentPane().add(label);
+      
+      JPanel pnlUcet = new JPanel();
+      pnlUcet.setBackground(Color.LIGHT_GRAY);
+      pnlUcet.setBounds(411, 45, 564, 311);
+      frame.getContentPane().add(pnlUcet);
+      pnlUcet.setLayout(null);
+      
+            JLabel lblMeno = new JLabel("Zadajte krstné meno klienta: ");
+            lblMeno.setBounds(257, 108, 243, 43);
+            pnlUcet.add(lblMeno);
+            lblMeno.setForeground(Color.DARK_GRAY);
+            lblMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+            
+                  txtMeno = new JTextField();
+                  txtMeno.setBounds(257, 142, 281, 43);
+                  pnlUcet.add(txtMeno);
+                  txtMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+                  txtMeno.setForeground(Color.DARK_GRAY);
+                  txtMeno.setColumns(10);
+                  
+                        JLabel lblZadajteRodneCislo = new JLabel("Zadajte rodné číslo klienta: ");
+                        lblZadajteRodneCislo.setBounds(257, 206, 243, 43);
+                        pnlUcet.add(lblZadajteRodneCislo);
+                        lblZadajteRodneCislo.setForeground(Color.DARK_GRAY);
+                        lblZadajteRodneCislo.setFont(new Font("Verdana", Font.BOLD, 15));
+                        
+                              txtRC = new JTextField();
+                              txtRC.setBounds(257, 237, 281, 43);
+                              pnlUcet.add(txtRC);
+                              txtRC.setFont(new Font("Verdana", Font.BOLD, 15));
+                              txtRC.setColumns(10);
+                              
+                                    JLabel lblPriezvisko = new JLabel("Zadajte priezvisko klienta: ");
+                                    lblPriezvisko.setBounds(257, 11, 243, 43);
+                                    pnlUcet.add(lblPriezvisko);
+                                    lblPriezvisko.setForeground(Color.DARK_GRAY);
+                                    lblPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+      
+      JPanel panel = new JPanel();
+      panel.setBackground(Color.LIGHT_GRAY);
+      panel.setBounds(411, 401, 564, 240);
+      frame.getContentPane().add(panel);
+      panel.setLayout(null);
+      
+            JComboBox cbTypUctu = new JComboBox();
+            cbTypUctu.setToolTipText("Vybratie typu  účtu ");
+            cbTypUctu.setBackground(new Color(165, 42, 42));
+            cbTypUctu.setBounds(34, 23, 499, 60);
+            panel.add(cbTypUctu);
+            cbTypUctu.setForeground(Color.DARK_GRAY);
+            cbTypUctu.setFont(new Font("Verdana", Font.BOLD, 15));
+            cbTypUctu.setModel(new DefaultComboBoxModel(new String[] {
+                  "Zvoľte typ účtu", "Bežný", "Sporiaci" }));
+            
+                  JButton btnVytvoreniePociatocnehoVkladu = new JButton(
+                        "Vytvorenie počiatočného vkladu a uloženie do systému");
+                  btnVytvoreniePociatocnehoVkladu.setBounds(34, 94, 499, 51);
+                  panel.add(btnVytvoreniePociatocnehoVkladu);
+                  btnVytvoreniePociatocnehoVkladu.setForeground(Color.DARK_GRAY);
+                  btnVytvoreniePociatocnehoVkladu.setBackground(new Color(241, 57, 83));
+                  btnVytvoreniePociatocnehoVkladu.addActionListener(new ActionListener()
+                  {
+
+                     @Override
+                     public void actionPerformed(ActionEvent e)
+                     {
+
+                        try
+                        {
+                           Klienti klienti = new Klienti();
+                           BankoveUcty ucty = new BankoveUcty();
+                           if(txtMeno.getText().length()==0 || txtPriezvisko.getText().length()==0 || txtRC.getText().length()==0)
+                           {
+                              JOptionPane.showMessageDialog(null, "Polička niesmu byť prázdne. Prosím vyplnte ich.");
+                              return;
+                           }
+                   
+                           long rc = Long.parseLong(txtRC.getText());
+                           Klient klient = new Klient(txtMeno.getText(), txtPriezvisko
+                                 .getText(), rc);
+
+                           String typUctu=(String)cbTypUctu.getSelectedItem();
+                           
+                           if(!(typUctu.equalsIgnoreCase("bežný") || typUctu
+                                 .equalsIgnoreCase("sporiaci")))
+                           {
+                              JOptionPane
+                                    .showMessageDialog(null,
+                                          "Nesprávny výber!\nV ponuke máme bežný alebo sporiaci účet");
+                              return;
+                           }
+
+                           BankovyUcet ucet = new BankovyUcet(txtPriezvisko.getText(),
+                                 typUctu);
+
+                           MainMetoda.vygenerujIdAjPreKlientaBU(klient, ucet);
+
+                           JOptionPane.showMessageDialog(null, klient);
+                           JOptionPane.showMessageDialog(null,
+                                 "Typ účtu:" + ucet.getTypUctu());
+
+                           klienti.pridajKlienta(klient);
+                           vytvorPociatocnyVklad(ucty, ucet);
+                           ucty.pridajUcet(ucet);
+                           JOptionPane.showConfirmDialog(null, "Klient: "+klient+" bol úspešne pridaný spolu s účtom "+ucet+" pridaný do systému.");
+                        }
+                        catch (FileNotFoundException fnfe)
+                        {
+                        }
+                        catch (IOException ex)
+                        {
+                           ex.printStackTrace();
+                        }
+                        catch (ClassNotFoundException e1)
+                        {
+                           e1.printStackTrace();
+                        }
+
+                     }
+
+                     private void vytvorPociatocnyVklad(BankoveUcty ucty, BankovyUcet ucet)
+                     {
+                        final double POC_VKLAD_BU = 100;
+                        final double POC_VKLAD_SU = 50;
+
+                        double pociatocnyVklad = Double.parseDouble(JOptionPane
+                              .showInputDialog(null,
+                                    "Aký počiatočný vklad chcete v eur: "));
+                        
+
+                        if (ucet.getTypUctu().equalsIgnoreCase("sporiaci"))
+                        {
+                           while (pociatocnyVklad < POC_VKLAD_SU)
+                           {
+                              JOptionPane.showMessageDialog(null,
+                                    "Nedostatočný počiatočný vklad. Počiatočný vklad musí byť minimálne "
+                                          + POC_VKLAD_SU + " Eur.");
+
+                              pociatocnyVklad = Double.parseDouble(JOptionPane
+                                    .showInputDialog("Aký počiatočný vklad chcete v eur: "));
+                           }
+
+                           ucet.vloz(pociatocnyVklad);
+                           ucet.pripisUrok();
+                        }
+                        else if(ucet.getTypUctu().equalsIgnoreCase("bežný"))
+                        {
+                           while (pociatocnyVklad < POC_VKLAD_BU)
+                           {
+                              JOptionPane.showMessageDialog(null,
+                                    "Nedostatočný počiatočný vklad. Počiatočný vklad musí byť minimálne "
+                                          + POC_VKLAD_BU + " Eur.");
+
+                              pociatocnyVklad = Double.parseDouble(JOptionPane
+                                    .showInputDialog("Aký počiatočný vklad chcete v eur: "));
+                           }
+
+                           ucet.vloz(pociatocnyVklad);
+                           ucet.pripisUrok();
+                        }
+
+                     }
+                  });
+                  btnVytvoreniePociatocnehoVkladu
+                        .setFont(new Font("Verdana", Font.BOLD, 15));
+                  
+                  JButton btnKoniec = new JButton("Koniec");
+                  btnKoniec.setBounds(293, 156, 240, 59);
+                  btnKoniec.setBackground(new Color(241, 57, 83));
+                  panel.add(btnKoniec);
+                  btnKoniec.setForeground(Color.DARK_GRAY);
+                  btnKoniec.addActionListener(new ActionListener()
+                  {
+                     
+                     @Override
+                     public void actionPerformed(ActionEvent e)
+                     {
+                        frame.setVisible(false);
+                        Vyhladavanie.pracaSUctom();
+                     }
+                  });
+                  btnKoniec.setFont(new Font("Verdana", Font.BOLD, 15));
+                  
+                  JButton btnDalsi = new JButton("Pridanie ďalšieho klienta");
+                  btnDalsi.setBounds(34, 156, 249, 59);
+                  panel.add(btnDalsi);
+                  btnDalsi.setForeground(Color.DARK_GRAY);
+                  btnDalsi.setBackground(new Color(241, 57, 83));
+                  btnDalsi.addActionListener(new ActionListener()
+                  {
+                     
+                     @Override
+                     public void actionPerformed(ActionEvent e)
+                     {
+                        txtMeno.setText("");
+                        txtPriezvisko.setText("");
+                        txtRC.setText("");
+                        cbTypUctu.setSelectedIndex(0);
+                        return;
+                        
+                     }
+                  });
+                  btnDalsi.setFont(new Font("Verdana", Font.BOLD, 15));
+                  btnDalsi.addActionListener(new ActionListener() {
+                     public void actionPerformed(ActionEvent e) {
+                     }
+                  });
+      
+      JPanel panel_1 = new JPanel();
+      panel_1.setBackground(Color.DARK_GRAY);
+      panel_1.setBounds(0, 0, 362, 682);
+      frame.getContentPane().add(panel_1);
+      panel_1.setLayout(null);
+      
+      JLabel lblNewLabel = new JLabel("");
+      lblNewLabel.setIcon(new ImageIcon(VytvorenieUctu.class.getResource("/images/ucet.jpg")));
+      lblNewLabel.setBounds(33, 280, 342, 276);
+      panel_1.add(lblNewLabel);
+      
+      JLabel label_1 = new JLabel(datum.getDen()+"");
+      label_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+      label_1.setBounds(775, 652, 20, 14);
+      frame.getContentPane().add(label_1);
+      
+      JLabel label_2 = new JLabel(datum.getNazovMesiaca());
+      label_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+      label_2.setBounds(791, 652, 79, 14);
+      frame.getContentPane().add(label_2);
+      
+      JLabel label_3 = new JLabel("2019");
+      label_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+      label_3.setBounds(873, 652, 38, 14);
+      frame.getContentPane().add(label_3);
+      
+      JLabel label_4 = new JLabel("00:04");
+      label_4.setFont(new Font("Verdana", Font.PLAIN, 13));
+      label_4.setBounds(929, 652, 46, 14);
+      frame.getContentPane().add(label_4);
+   }
+}

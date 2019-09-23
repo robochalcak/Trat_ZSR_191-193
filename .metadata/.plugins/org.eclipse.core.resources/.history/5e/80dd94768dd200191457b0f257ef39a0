@@ -1,0 +1,318 @@
+package zaverecnyProjekt.bankovyUcet;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+/**
+ * Trieda sluzi na manipulaciu so subormi zapis nacitanie zo suboru 
+ * @author Robert Chalcak
+ *
+ */
+public class BankoveUctyAdapter implements Serializable
+{
+
+   private static final long serialVersionUID = -9082661654821277679L;
+   private String subor;
+   private Connection spojenie;
+   private List<BankovyUcet>ucty;
+   
+   /**
+    * Vytvara prazdny objekt a zaroven definuje nazov a cestu suboru, s ktorym
+    * bude pracovat 
+    */
+   public BankoveUctyAdapter()
+   {
+      this.subor = "ucty.dat"; 
+      this.ucty = new LinkedList<BankovyUcet>();
+   }
+   /**
+    * Zapisuje ucty do suboru 
+    * @param ucty
+    * @throws FileNotFoundException
+    * @throws IOException
+    */
+   public void zapis(ArrayList<BankovyUcet> ucty) throws FileNotFoundException,
+         IOException
+   {
+      try
+      {
+         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(
+               subor));
+         for (int i = 0; i < ucty.size(); i++)
+         {
+            oos.writeObject(ucty.get(i));
+         }
+         oos.close();
+         ucty.clear();
+      }
+      catch (Exception ex)
+      {
+         JOptionPane.showMessageDialog(null,
+               "Ulozenie do suboru sa nepodarilo!");
+         return;
+      }
+
+   }
+   /**
+    * Nacitava ucty zo subory aby system mohol pracovat 
+    * @param ucty
+    * @throws IOException
+    * @throws ClassNotFoundException
+    */
+   public void nacitaj(ArrayList<BankovyUcet> ucty) throws IOException,
+         ClassNotFoundException
+   {
+      if(ucty.size()!=0)
+      {
+         ucty.clear();
+      }
+      
+      try
+      {
+         FileInputStream fis = new FileInputStream(subor);
+         ObjectInputStream ois = new ObjectInputStream(fis);
+         while(ois!=null)
+         {
+            ucty.add((BankovyUcet) ois.readObject());
+         }
+         
+      }
+      catch(Exception ex)
+      {
+         
+        // zapis(objs);
+         //System.out.println("Neda sa nacitat subor "+subor+".");
+         return;
+      }
+      
+   }
+   
+   public void vytvorSpojenieSDB()throws Exception
+   {
+      if(spojenie!=null)
+      {
+         return;
+      }
+      try
+      {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+      }
+      catch(ClassNotFoundException e)
+      {
+         throw new Exception ("Nenasiel sa ovladac.");
+      }
+      
+      String URL ="jdbc:mysql://localhost:3306/banka_db?useLegacyDatetimeCode=false&serverTimezone=UTC";
+      spojenie = DriverManager.getConnection(URL,"root","Robo1987");
+      
+      PreparedStatement vytvorDB = spojenie.prepareStatement("CREATE DATABASE IF NOT EXISTS banka_db");
+      vytvorDB.executeUpdate();
+      System.out.println("Pripojenie: "+spojenie);
+   }
+   
+   public void ulozDB()throws SQLException, ClassNotFoundException, IOException
+   {
+      createTable();
+      BankoveUcty bankoveUcty = new BankoveUcty();
+      ArrayList<BankovyUcet>uctyNaUlozenie= new ArrayList<BankovyUcet>();
+      uctyNaUlozenie = bankoveUcty.vratListUctov();
+      
+      String sqlTest = "SELECT count(*)AS pocet FROM banka_db.ucty WHERE cisloUctu=?";
+      
+      String sqlInsert = "INSERT INTO banka_db.ucty("+
+      "menoKlienta, cisloUctu, aktualnyZostatok, typUctu, id_uctu, urok)"+
+            "VALUES(?,?,?,?,?,?)";
+      
+      String sqlUpdate = "UPDATE banka_db.ucty "+
+      "SET menoKlienta=?, aktualnyZostatok=?, typUctu=?, id_uctu=?, urok=? WHERE cisloUctu=?";
+      
+      PreparedStatement overovaciPrikaz = spojenie.prepareStatement(sqlTest);
+      String sqlDropTable = "DROP TABLE banka_db.ucty";
+      for(BankovyUcet ucet:uctyNaUlozenie)
+      {
+         String menoKlienta = ucet.getMenoKlienta();
+         int cisloUctu =ucet.getRovnakeId();
+         double aktualnyZostatok=ucet.getAktualnyZostatok();
+         String typUctu = ucet.getTypUctu();
+         String id_uctu = ucet.getId();
+         double urok = ucet.getUrok();
+         
+         overovaciPrikaz.setInt(1, cisloUctu);
+         
+         ResultSet vysledok = overovaciPrikaz.executeQuery();
+         
+         
+         while(vysledok.next())
+         {
+            int pocet = vysledok.getInt(1);
+            int index =1;
+            
+            if(pocet==0){
+               
+               System.out.println("Vkladam do databazy ucet s ID: "+cisloUctu);
+               PreparedStatement insertPrikaz = spojenie.prepareStatement(sqlInsert);
+               
+               insertPrikaz.setString(index++,menoKlienta);
+               insertPrikaz.setInt(index++, cisloUctu);
+               insertPrikaz.setDouble(index++,aktualnyZostatok);
+               insertPrikaz.setString(index++,typUctu);
+               insertPrikaz.setString(index++,id_uctu);
+               insertPrikaz.setDouble(index++, urok);
+               
+               insertPrikaz.execute();
+               insertPrikaz.close();
+               
+            }
+            else
+            {
+               System.out.println("Update uctov s ID: "+cisloUctu);
+               //PreparedStatement dropTablePrikaz = spojenie.prepareStatement(sqlDropTable);
+             //  dropTablePrikaz.execute();
+             //  createTable();
+               index=1;
+               
+               PreparedStatement updatePrikaz = spojenie.prepareStatement(sqlUpdate);
+               updatePrikaz.setString(index++, menoKlienta);
+               updatePrikaz.setInt(index++, cisloUctu);
+               updatePrikaz.setDouble(index++, aktualnyZostatok);
+               updatePrikaz.setString(index++,typUctu);
+               updatePrikaz.setString(index++,id_uctu);
+               updatePrikaz.setDouble(index++, urok);
+               
+               updatePrikaz.executeUpdate();
+               updatePrikaz.close();
+              
+              /*
+               PreparedStatement insertPrikaz = spojenie.prepareStatement(sqlInsert);
+               insertPrikaz.setString(index++,menoKlienta);
+               insertPrikaz.setInt(index++, cisloUctu);
+               insertPrikaz.setDouble(index++,aktualnyZostatok);
+               insertPrikaz.setString(index++,typUctu);
+               insertPrikaz.setString(index++,id_uctu);
+               insertPrikaz.setDouble(index++, urok);
+
+               insertPrikaz.execute();
+               insertPrikaz.close();
+               */
+            }
+         }
+      }
+      overovaciPrikaz.close();
+   }
+   
+   public void zrusSpojenie()
+   {
+      if(spojenie!=null)
+      {
+         try{
+         spojenie.close();
+         }
+         catch(SQLException e)
+         {
+            System.out.println("Nie je mozne ukoncit spojenie s databazou");
+         }
+      }
+      
+   }
+   
+   public void nacitajCeluDB()throws SQLException
+   {
+      System.out.println("Nacitavam obsah celej databazy: ");
+      String sql = "SELECT * FROM banka_db.ucty";
+      
+      Statement selectPrikaz = spojenie.createStatement();
+      
+      ResultSet vysledky = selectPrikaz.executeQuery(sql);
+      
+      while(vysledky.next())
+      {
+         String menoMajitela= vysledky.getString("menoKlienta");
+         int cisloUctu = vysledky.getInt("cisloUctu");
+         double aktualnyZostatok=vysledky.getDouble("aktualnyZostatok");
+         String typUctu = vysledky.getString("typUctu");
+         String idUctu = vysledky.getString("id_uctu");
+         double urok = vysledky.getDouble("urok");
+         
+         
+         BankovyUcet ucet = new BankovyUcet();
+         
+         ucet.setMenoKlienta(menoMajitela);
+         ucet.setRovnakeId(cisloUctu);
+         ucet.vloz(aktualnyZostatok);
+         ucet.setTypUctu(typUctu);
+         ucet.setId(idUctu);
+         ucet.setUrok(urok);
+         
+         ucty.add(ucet);
+         
+         System.out.println(ucet);
+      }
+      
+      vysledky.close();
+      selectPrikaz.close();
+   }
+   
+   
+   public JTable nacitajDoTabulky(JTable table, String sel) throws SQLException
+   {
+      DefaultTableModel model2 = new DefaultTableModel();
+      table.setModel(null);
+      table.setModel(model2);
+      
+      model2.addColumn("Priezvisko majitela účtu ");
+      model2.addColumn("Čislo účtu ");
+      model2.addColumn("Aktuálny zostatok ");
+      model2.addColumn("Typ účtu");
+      model2.addColumn("ID účtu");
+      model2.addColumn("Úrok");
+      
+      String sql = sel;
+      
+      Statement select = spojenie.createStatement();
+      
+      ResultSet rs = select.executeQuery(sql);
+      
+      while(rs.next())
+      {          
+         model2.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)});                 
+      }
+      
+      rs.close();
+      select.close();
+      
+      return table;
+   }
+   
+   private void createTable()throws SQLException
+   {
+      String sqlCreate = "CREATE TABLE IF NOT EXISTS banka_db.ucty"+
+                        "(menoKlienta         VARCHAR(20),"+
+                        "cisloUctu            INTEGER,"+
+                        "aktualnyZostatok     REAL,"+
+                        "typUctu              VARCHAR(10),"+
+                        "id_uctu              VARCHAR(7),"+
+                        "urok                 REAL)";
+      
+      Statement stm = spojenie.createStatement();
+      stm.executeUpdate(sqlCreate);
+   }
+   
+   
+}

@@ -1,0 +1,254 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import zaverecnyProjekt.datum.Datum;
+import zaverecnyProjekt.zamestnanci.Zamestnanci;
+import zaverecnyProjekt.zamestnanci.Zamestnanec;
+
+public class PrihlasovacieOkno extends JFrame
+{
+
+   private JPanel contentPane;
+   private JTextField txtFieldMeno;
+   private JTextField txtFieldId;
+   private Zamestnanci zamestnanci;
+   private Datum datum;
+
+   /**
+    * Launch the application.
+    */
+  // public static void main(String[] args)
+   public void zobrazNoveOkno()
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               PrihlasovacieOkno frame = new PrihlasovacieOkno();
+               frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the frame.
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    * @throws FileNotFoundException 
+    */
+   public PrihlasovacieOkno() throws FileNotFoundException, ClassNotFoundException, IOException
+   {
+      
+      this.zamestnanci = new Zamestnanci();
+      initialize();
+      
+   }
+   
+   public void initialize(){
+      datum = new Datum();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setBounds(100, 100, 720, 420);
+      contentPane = new JPanel();
+      contentPane.setBackground(Color.WHITE);
+      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      setContentPane(contentPane);
+      contentPane.setLayout(null);
+      setTitle("Prihlasenie sa do systému");
+      
+      JPanel panel = new JPanel();
+      panel.setBackground(Color.DARK_GRAY);
+      panel.setBounds(0, 118, 295, 381);
+      contentPane.add(panel);
+      
+      JButton btnPrihlasenie = new JButton("Prihlasenie");
+      btnPrihlasenie.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnPrihlasenie.setForeground(Color.DARK_GRAY);
+      btnPrihlasenie.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent arg0) {
+         }
+      });
+      btnPrihlasenie.setBackground(new Color(241, 57, 83));
+      btnPrihlasenie.setBounds(353, 297, 161, 45);
+      btnPrihlasenie.addActionListener(new ActionListener()
+      {
+         
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            try
+            {               
+               
+               if(((Zamestnanec) zamestnanci.vyhladajZamestnanca( txtFieldId.getText(),txtFieldMeno.getText())).getMeno()==null)
+               {
+                  JOptionPane.showMessageDialog(null, "Zle zadané meno alebo id."); 
+                  txtFieldId.setText("");
+                  txtFieldMeno.setText("");
+               }
+               else if(((Zamestnanec) zamestnanci.vyhladajZamestnanca(txtFieldId.getText(), txtFieldMeno.getText())).getMeno()!=null)
+               {
+                  JOptionPane.showMessageDialog(null, "Boli ste úspešne prihlásený");
+                  JOptionPane.showMessageDialog(null, "Vitajte v aplikácii pre správu klientov banky.\n"
+                        + " Momentálne Prihlásený: \n"+zamestnanci.vyhladajZamestnanca(txtFieldId.getText()));
+                  setVisible(false);
+                 
+                  Vyhladavanie.pracaSUctom();
+                  
+               }
+            }
+            catch (FileNotFoundException e1)
+            {
+               JOptionPane.showMessageDialog(null, "Nebol nájdený súbor zamestnanci.dat!");
+               return;
+            }
+            catch (ClassNotFoundException e1)
+            {
+               e1.printStackTrace();
+            }
+            catch (IOException e1)
+            {              
+               e1.printStackTrace();
+            }
+            
+         }
+      });
+      
+      
+      contentPane.add(btnPrihlasenie);
+      
+      JEditorPane editorPane = new JEditorPane();
+      editorPane.setBounds(349, 310, 106, 20);
+      contentPane.add(editorPane);
+      
+      txtFieldMeno = new JTextField();
+      txtFieldMeno.setForeground(Color.DARK_GRAY);
+      txtFieldMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtFieldMeno.setBounds(353, 70, 320, 50);
+      contentPane.add(txtFieldMeno);
+      txtFieldMeno.setColumns(10);
+      
+      JSeparator separator = new JSeparator();
+      separator.setBounds(304, 146, 390, -7);
+      contentPane.add(separator);
+      
+      JLabel lblMenoZamestnanca = new JLabel("Meno zamestnanca ");
+      lblMenoZamestnanca.setForeground(Color.DARK_GRAY);
+      lblMenoZamestnanca.setFont(new Font("Verdana", Font.BOLD, 15));
+      lblMenoZamestnanca.setBounds(353, 30, 176, 29);
+      contentPane.add(lblMenoZamestnanca);
+      
+      JLabel lblIdZamestnanca = new JLabel("ID Zamestnanca");
+      lblIdZamestnanca.setForeground(Color.DARK_GRAY);
+      lblIdZamestnanca.setFont(new Font("Verdana", Font.BOLD, 15));
+      lblIdZamestnanca.setBounds(353, 177, 176, 29);
+      contentPane.add(lblIdZamestnanca);
+      
+      txtFieldId = new JTextField();
+      txtFieldId.setFont(new Font("Verdana", Font.BOLD, 15));
+      txtFieldId.setForeground(Color.DARK_GRAY);
+      txtFieldId.setColumns(10);
+      txtFieldId.setBounds(353, 217, 320, 50);
+      contentPane.add(txtFieldId);
+      
+      JSeparator separator_1 = new JSeparator();
+      separator_1.setBounds(353, 118, 320, 2);
+      contentPane.add(separator_1);
+      
+      JSeparator separator_2 = new JSeparator();
+      separator_2.setBounds(353, 265, 320, 2);
+      contentPane.add(separator_2);
+      
+      JButton btnRegistracia = new JButton("Registrácia");
+      btnRegistracia.setForeground(Color.DARK_GRAY);
+      btnRegistracia.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnRegistracia.setBackground(new Color(241, 57, 83));
+      btnRegistracia.setBounds(527, 297, 146, 45);
+      
+      btnRegistracia.addActionListener(new ActionListener()
+      {
+         
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {    
+            RegistraciaZamestnanca registracia;
+            try
+            {
+               setVisible(false);
+               dispose();
+               registracia = new RegistraciaZamestnanca();              
+            }
+            catch (ClassNotFoundException | IOException e1)
+            {
+               
+               e1.printStackTrace();
+            }
+            
+         }
+      });
+      
+      
+      
+      contentPane.add(btnRegistracia);
+      
+      JLabel lblImg = new JLabel("");
+      lblImg.setVerticalAlignment(SwingConstants.TOP);
+      lblImg.setBounds(-122, -1, 417, 121);
+      contentPane.add(lblImg);
+      lblImg.setIcon(new ImageIcon(PrihlasovacieOkno.class.getResource("/images/prihlasenie.jpg")));
+      
+      JLabel lblDen = new JLabel("New label");
+      lblDen.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblDen.setBounds(494, 353, 20, 14);
+      lblDen.setText(datum.getDen()+"");
+      contentPane.add(lblDen);
+      
+      JLabel lblMesiac = new JLabel("New label");
+      lblMesiac.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblMesiac.setBounds(510, 353, 79, 14);
+      lblMesiac.setText(datum.getNazovMesiaca());
+      contentPane.add(lblMesiac);
+      
+      JLabel lblRok = new JLabel("New label");
+      lblRok.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblRok.setBounds(592, 353, 38, 14);
+      lblRok.setText(datum.getRok()+"");
+      contentPane.add(lblRok);
+      
+      JLabel lblCas = new JLabel("New label");
+      lblCas.setFont(new Font("Verdana", Font.PLAIN, 13));
+      lblCas.setBounds(648, 353, 46, 14);
+      lblCas.setText(datum.toStringCas());
+      contentPane.add(lblCas);
+   }
+   
+   public static void zobrazPrihlasenie() throws FileNotFoundException, ClassNotFoundException, IOException
+   {
+      PrihlasovacieOkno okno = new PrihlasovacieOkno();
+   }
+   
+}

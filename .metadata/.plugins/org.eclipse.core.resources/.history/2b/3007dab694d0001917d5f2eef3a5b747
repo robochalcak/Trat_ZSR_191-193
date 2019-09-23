@@ -1,0 +1,34 @@
+package databazaTest;
+
+import java.util.ArrayList;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUctyAdapter;
+import zaverecnyProjekt.klienti.Klient;
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class DatabazaTest
+{
+
+   public static void main(String[] args)
+   {
+      KlientiAdapter adapterKl = new KlientiAdapter();
+      BankoveUctyAdapter adapterBu = new BankoveUctyAdapter();
+      Klienti kl = new Klienti();
+      
+      try
+      {
+         adapterKl.vytvorSpojenieSDB();
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+      
+      ArrayList<Klient>klienti = new ArrayList<Klient>();
+      klienti = 
+      
+      
+
+   }
+
+}

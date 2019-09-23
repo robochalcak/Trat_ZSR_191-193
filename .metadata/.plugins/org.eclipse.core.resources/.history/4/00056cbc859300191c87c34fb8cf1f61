@@ -1,0 +1,38 @@
+package sk.itvkurze.webinar08.inicializacny_blok;
+
+public class InicializacnyBlok
+{
+   private static int cislo;
+   private static int pocetVytvorenychObjektov;
+   private static Trieda1 trieda1 =new Trieda();
+   
+   //nestaticke premmenne instancne premne
+   private String menoStudenta;
+   private Trieda2 trieda2 = new Trieda2();
+   
+   //staticky inicializacny blok vieme pristupovat len k statickym clenom triedy
+   
+   //telo statickeho inicializacneho bloku sa vykona len raz pri zavedeni triedy
+   
+   static
+   {
+      System.out.println("...zavolal sa staticky inicializacny blok...");
+   }
+   
+   //nestaticky inicializacny blk mozeme pristupovat k statickym aj nestatickym clenom triedy
+   
+   {
+      System.out.println("...zavola sa nestaticky inicializacny blok...");
+      pocetVytvorenychObjektov++;
+   }
+   
+   public InicializacnyBlok()
+   {
+      System.out.println("...zavolal sa konstruktor inicializacnyBlok()...");
+   }
+   
+   public static int getPocetVytvorenychObjektov()
+   {
+      return pocetVytvorenychObjektov;
+   }
+}

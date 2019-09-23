@@ -1,0 +1,15 @@
+4.Vysvetlite a demonstrujte na priklade co je to dedicnost.
+
+-dedicnost nam sluzi na znovupouzitie existujuceho kodu tak, ze vezmeme nejaku triedu a vytvorime
+novu triedu, ktora zdedi spravanie(instancne premenne) a stav(metody) z nadtriedy 
+-ak nie sme spokojni s implementaciou spravania (s nejakou metodou) - tak si ju v podtriede prepiseme (overridneme)
+
+existujuca trieda: Bicykel
+
+nova trieda: HorskyBicykel extends Bicykel
+{
+	//trieda Bicykel je nadtrieda
+	//trieda HorskyBicykel je podtrieda
+	
+	
+}

@@ -1,0 +1,12 @@
+package databazaTest;
+
+public class DatabazaTest
+{
+
+   public static void main(String[] args)
+   {
+      // TODO Auto-generated method stub
+
+   }
+
+}

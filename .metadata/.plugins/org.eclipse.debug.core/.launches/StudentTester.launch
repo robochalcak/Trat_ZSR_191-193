@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/webinar08/src/sk/itvkurze/webinar08/getre_a_setre/StudentTester.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="sk.itvkurze.webinar08.getre_a_setre.StudentTester"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="webinar08"/>
+</launchConfiguration>

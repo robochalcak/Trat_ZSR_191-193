@@ -1,0 +1,40 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+import java.io.Serializable;
+
+public class BankovyUcet implements Serializable
+{
+
+   private static final long serialVersionUID = -50262367105022047L;
+   private double aktualnyZostatok;
+   private int cisloUctu;
+   
+   public BankovyUcet(int cisloUctu,double pociatocnyZostatok)
+   {
+      this.cisloUctu = cisloUctu;
+      this.aktualnyZostatok=pociatocnyZostatok;
+   }
+   public int getCisloUctu()
+   {
+      return cisloUctu;
+   }
+   
+   public void setCisloUctu(int cisloUctu)
+   {
+      this.cisloUctu=cisloUctu;
+   }
+   public double getAktualnyZostatok()
+   {
+      return aktualnyZostatok;
+   }
+   
+   public void vloz(double ciastka)
+   {
+      this.aktualnyZostatok+=ciastka;
+   }
+   
+   public void vyber(double ciastka)
+   {
+      this.aktualnyZostatok-=ciastka;
+   }
+}

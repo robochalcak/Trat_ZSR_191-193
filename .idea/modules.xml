@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AutoEclipse/AutoEclipse.iml" filepath="$PROJECT_DIR$/AutoEclipse/AutoEclipse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AutoScaling/AutoScaling.iml" filepath="$PROJECT_DIR$/AutoScaling/AutoScaling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SkuskaZADANIE2.2/SkuskaZADANIE2.2.iml" filepath="$PROJECT_DIR$/SkuskaZADANIE2.2/SkuskaZADANIE2.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar 27/Webinar 27.iml" filepath="$PROJECT_DIR$/Webinar 27/Webinar 27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar 29/Webinar 29.iml" filepath="$PROJECT_DIR$/Webinar 29/Webinar 29.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webinar01/Webinar01.1/Webinar01.1.iml" filepath="$PROJECT_DIR$/webinar01/Webinar01.1/Webinar01.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar02/Webinar02.iml" filepath="$PROJECT_DIR$/Webinar02/Webinar02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar03/Webinar03.iml" filepath="$PROJECT_DIR$/Webinar03/Webinar03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar04/Webinar04.iml" filepath="$PROJECT_DIR$/Webinar04/Webinar04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar05/Webinar05.iml" filepath="$PROJECT_DIR$/Webinar05/Webinar05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar06/Webinar06.iml" filepath="$PROJECT_DIR$/Webinar06/Webinar06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar07/Webinar07.iml" filepath="$PROJECT_DIR$/Webinar07/Webinar07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar12/Webinar12.iml" filepath="$PROJECT_DIR$/Webinar12/Webinar12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar13/Webinar13.iml" filepath="$PROJECT_DIR$/Webinar13/Webinar13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar14/Webinar14.iml" filepath="$PROJECT_DIR$/Webinar14/Webinar14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar16/Webinar16.iml" filepath="$PROJECT_DIR$/Webinar16/Webinar16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar17/Webinar17.iml" filepath="$PROJECT_DIR$/Webinar17/Webinar17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar18/Webinar18.iml" filepath="$PROJECT_DIR$/Webinar18/Webinar18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar19/Webinar19.iml" filepath="$PROJECT_DIR$/Webinar19/Webinar19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar20/Webinar20.iml" filepath="$PROJECT_DIR$/Webinar20/Webinar20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar21/Webinar21.iml" filepath="$PROJECT_DIR$/Webinar21/Webinar21.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar22/Webinar22.iml" filepath="$PROJECT_DIR$/Webinar22/Webinar22.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar23/Webinar23.iml" filepath="$PROJECT_DIR$/Webinar23/Webinar23.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar24/Webinar24.iml" filepath="$PROJECT_DIR$/Webinar24/Webinar24.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar28/Webinar28.iml" filepath="$PROJECT_DIR$/Webinar28/Webinar28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Webinar28b/Webinar28b.iml" filepath="$PROJECT_DIR$/Webinar28b/Webinar28b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zadanie_02ZobrazovacGrafickychUtvarov/Zadanie_02ZobrazovacGrafickychUtvarov.iml" filepath="$PROJECT_DIR$/Zadanie_02ZobrazovacGrafickychUtvarov/Zadanie_02ZobrazovacGrafickychUtvarov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zadanie_12.3_KopirovacSuborov/Zadanie_12.3_KopirovacSuborov.iml" filepath="$PROJECT_DIR$/Zadanie_12.3_KopirovacSuborov/Zadanie_12.3_KopirovacSuborov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zadanie_12.3_KopirovacSuborov1/Zadanie_12.3_KopirovacSuborov1.iml" filepath="$PROJECT_DIR$/Zadanie_12.3_KopirovacSuborov1/Zadanie_12.3_KopirovacSuborov1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zamestnanec/Zamestnanec.iml" filepath="$PROJECT_DIR$/Zamestnanec/Zamestnanec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZaverecnyProjekt/ZaverecnyProjekt.iml" filepath="$PROJECT_DIR$/ZaverecnyProjekt/ZaverecnyProjekt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/klavesnica/klavesnica.iml" filepath="$PROJECT_DIR$/klavesnica/klavesnica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kopirovacSuborov/kopirovacSuborov.iml" filepath="$PROJECT_DIR$/kopirovacSuborov/kopirovacSuborov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webinar08/webinar08.iml" filepath="$PROJECT_DIR$/webinar08/webinar08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webinar09/webinar09.iml" filepath="$PROJECT_DIR$/webinar09/webinar09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webinar10/webinar10.iml" filepath="$PROJECT_DIR$/webinar10/webinar10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webinar15/webinar15.iml" filepath="$PROJECT_DIR$/webinar15/webinar15.iml" />
+    </modules>
+  </component>
+</project>

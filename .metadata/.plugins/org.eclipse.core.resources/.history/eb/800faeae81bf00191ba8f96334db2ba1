@@ -1,0 +1,17 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+/**
+ * Program spusta dve vlakna, jedno ma na starosti vklady a durhe vybery.
+ * Obe vlakna pracuju s tym istym uctom (zdielaju spolocne vlakna).
+ * @author Robert Chalcak
+ *
+ */
+public class BankovyUcetTester
+{
+
+   public static void main(String[] args)
+   {
+      
+
+   }
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;sk.itvkurze.webinar17.vlastny_zretazeny_zoznam&apos; to &apos;sk.itvkurze.webinar18.vlastny_zretazeny_zoznam&apos;&#x0D;&#x0A;- Original project: &apos;Webinar18&apos;&#x0D;&#x0A;- Original element: &apos;Webinar18/src/sk.itvkurze.webinar17.vlastny_zretazeny_zoznam&apos;&#x0D;&#x0A;- Renamed element: &apos;Webinar18/src/sk.itvkurze.webinar18.vlastny_zretazeny_zoznam&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;sk.itvkurze.webinar17.vlastny_zretazeny_zoznam&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;sk.itvkurze.webinar17.vlastny_zretazeny_zoznam" name="sk.itvkurze.webinar18.vlastny_zretazeny_zoznam" qualified="false" references="true" stamp="1564075657617" textual="false" version="1.0"/>
+</session>

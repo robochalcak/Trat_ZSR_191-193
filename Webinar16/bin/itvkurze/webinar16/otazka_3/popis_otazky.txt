@@ -1,0 +1,10 @@
+3.vytvor typ enum pre rocne obdobia 
+
+-typ enum v sebe zahrna konstanty (premenne, ktore maju konstantne hodnoty)
+-vytvorte Singleton  
+
+
+public Enum RocneObdobia
+{
+	JAR,LETO,JESEN,ZIMA
+}

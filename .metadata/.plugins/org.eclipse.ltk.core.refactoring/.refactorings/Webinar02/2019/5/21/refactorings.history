@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Webinar02&apos;&#x0D;&#x0A;- Original project: &apos;Webinar02&apos;&#x0D;&#x0A;- Original element: &apos;sk.itvkurze.webinar02.posun_obdlznika.ZobrazovacPraxdnehoOkna.java&apos;" description="Delete element" element1="/src&lt;sk.itvkurze.webinar02.posun_obdlznika{ZobrazovacPraxdnehoOkna.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1558632866073" subPackages="false" version="1.0"/>
+</session>

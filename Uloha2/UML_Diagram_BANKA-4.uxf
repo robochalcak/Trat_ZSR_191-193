@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>712</x>
+      <y>664</y>
+      <w>192</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Banka
+--
++ ZalozenieUctu(): void
++ VytvorVklad() : void
++ VytvorVybet() : void
++ VypisInfoOUcte() : void
++ PrihlasSa() : void
++ ZaregistrujZamestnanca() : void
++ vytvorCisloUctu() : void
+	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>1008</y>
+      <w>312</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Zamestnanci
+--
+- ArrayList&lt;Zamestnanec&gt;Zamestnanci 
+--
++ pridajZamenstnanca(Zamestnanec zamestnanec) : void
++ vyhladatZamestnanca(String ID) : void
++ jeZamestnanec(String ID) : boolean
++ vratZoznamZamestnancov() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>656</x>
+      <y>264</y>
+      <w>472</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Klienti
+-
+- ArrayList&lt;Klient&gt;klienti : 
+--
++ zaregistrovatKlienta(Klient klient) ; void 
++ vymazatKlienta(String meno) : String
++ najdiKlienta(String priezvisko, String meno, long rodneCislo, int id) : void
++ jeKlient(String priezvisko, String meno, long rodneCislo) : boolean 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>984</y>
+      <w>168</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Zamestnanec
+--
+- meno : String
+- ID : String
+- plat : double
+--
++ setId() : String
++ setMeno() : String
++ getMeno() : String
++ getId() : String
++ prihlasSa() : void
++ pracuj() : void
++ getPlat() : double
++ toString();</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>360</x>
+      <y>952</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>400</x>
+      <y>952</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>320</x>
+      <y>952</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>736</x>
+      <y>208</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>696</x>
+      <y>208</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>1048</y>
+      <w>136</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>64</x>
+      <y>928</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1464</x>
+      <y>56</y>
+      <w>232</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Klient
+--
+- meno : String
+- priezvisko : String
+- rodneCislo : long
+- id : int
+--
++ setMeno(String meno) : String
++ setPriezvisko(String priezvisko) : String
++ setRodneCislo(long rodneCislo) : long
++ setId() : int
++ getMeno() : String
++ getPriezvisko() : String
++ getRodneCislo() : long
++ getId() : int
++ toString();
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1048</x>
+      <y>120</y>
+      <w>432</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0;520.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>776</x>
+      <y>208</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>1560</x>
+      <y>0</y>
+      <w>48</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>568</y>
+      <w>320</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>Bankovy Ucet
+--
+- id  : int
+- aktualnyZostatok : double
+- static final  PREVYSUJUCI_VKLAD=10000 : double
+- static final BEZNY_UROK = 0.02 : double
+- static final  VIP_UROK=0.05 : double
+- static final  POPLATOK_ZA_VYBER=3.5 : double
+- static final POPLATOK_ZA_VKLAD=1.0 : double
+- cisloUctu : long
+--
++ vloz(double ciastka): void
++ vyber(double ciastka) : vyber
++ getAktualnyZostatok() : double
++ getId() : int
++ getPrevysujuciVKlad() : double
++ getBeznyUrokSadzba() : double
++ getViPUrokSadzba() : double
++ zvolSiTyp(): void
++ String toString();
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>704</y>
+      <w>120</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>360</y>
+      <w>24</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>776</y>
+      <w>232</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;350.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>616</y>
+      <w>208</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Datum
+--
+- den : int
+- mesiac : int 
+- rok : int
+--
++ setDen(int den) : int
++ setMesiac(int mesiac) : int
++ setRok(int rok) : int
++ getDen(); : int
++ getMesiac() : int
++ getRok() : int 
++ jePrestupnyRok() : void
++ vratNazovMesiaca(int mesiac) : void
++ vratAktualnyDatum() : void
++ toString();</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>696</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>312</y>
+      <w>224</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;380.0;10.0;10.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>464</x>
+      <y>824</y>
+      <w>24</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1376</x>
+      <y>672</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1312</x>
+      <y>736</y>
+      <w>304</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1352</x>
+      <y>520</y>
+      <w>296</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>BeznyUcet extends BankovyUcet
+--
+- static final POCIATOCNY_ZOSTATOK=100 : double
+- aktualnyZostatokSporiacehoUctu : double
+- urokovaSazba : double
+- cisloUctu : long
+--
++ getUrok() : double
++ getVipUrok() : double
++ getAktualnyZostatok() : double
++ setCisloUctu() : long
++ getCisloUctu() : long
++ pripisUrok(double urokovaSadzba) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1600</x>
+      <y>712</y>
+      <w>296</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>SporiaciUcet extends BankovyUcet
+--
+- static final POCIATOCNY_ZOSTATOK=50 : double
+- aktualnyZostatokSporiacehoUctu : double
+- urokovaSazba : double
+--
++ getUrok() : double
++ getVipUrok() : double
++ getAktualnyZostatok() : double
++ setCisloUctu() : double
++ getCisloUctu() : double
++ pripisUrok(double urokovaSadzba) : double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>312</y>
+      <w>432</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;520.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1528</x>
+      <y>248</y>
+      <w>24</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1688</x>
+      <y>168</y>
+      <w>120</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;130.0;20.0;130.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>360</y>
+      <w>728</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;890.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>816</y>
+      <w>672</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;360.0;10.0;470.0;820.0;470.0;820.0;10.0</additional_attributes>
+  </element>
+</diagram>

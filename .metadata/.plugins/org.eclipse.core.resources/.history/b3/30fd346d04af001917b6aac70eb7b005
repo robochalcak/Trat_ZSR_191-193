@@ -1,0 +1,18 @@
+package sk.itvkurze.webinar18.neohraniceny_typ;
+
+import java.util.List;
+
+public class ZolikTest
+{
+   private static void vypisZoznam(List<Object>zoznam)
+   {
+      
+   }
+   
+   
+   public static void main(String[] args)
+   {
+      
+   }
+
+}

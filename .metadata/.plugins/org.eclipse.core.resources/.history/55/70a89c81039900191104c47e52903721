@@ -1,0 +1,43 @@
+package sk.itvkurze.webinar10.udalosti_mysi;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+import javax.swing.JComponent;
+
+public class KomponentaObdlznik extends JComponent
+{
+   private static final int X_OVA_SURADNICA=100;
+   private static final int Y_OVA_SURADNICA=100;
+   private static final int SIRKA=40;
+   private static final int VYSKA=60;
+   
+   private Rectangle obdlznik; 
+   
+   public KomponentaObdlznik()
+   {
+      obdlznik = new Rectangle(X_OVA_SURADNICA, Y_OVA_SURADNICA, SIRKA, VYSKA);
+   }
+   
+   @Override
+   public void paintComponents(Graphics g)
+   {
+      Graphics2D g2 = (Graphics2D)g;
+      
+      //vykreslime obdlznik
+      g2.setColor(Color.blue);
+      g2.fill(obdlznik);
+      g2.setColor(Color.red);
+      g2.draw(obdlznik);
+   }
+   
+   public void posun(int pocetPixelovOsX, int pocetPixelovOsY)
+   {
+      obdlznik.translate(pocetPixelovOsX, pocetPixelovOsY);
+      
+      //vynutenie  prekreselnia grafickeho kontextur vykreslovacej plochy
+      repaint();
+   }
+}

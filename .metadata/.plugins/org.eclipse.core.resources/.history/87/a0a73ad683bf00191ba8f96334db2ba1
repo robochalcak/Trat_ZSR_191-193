@@ -1,0 +1,37 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+import java.io.Serializable;
+
+public class BankovyUcet 
+{
+
+   private double aktualnyZostatok;
+   private Lock zamokZmenenyZostatok;
+   private Condition dostatokProstriedkovNaUcte;
+
+   
+   public BankovyUcet(double pociatocnyZostatok)
+   {    
+      this.aktualnyZostatok=pociatocnyZostatok;      
+   }
+   
+   public BankovyUcet()
+   {
+      this.aktualnyZostatok=0;
+   }
+ 
+   public double getAktualnyZostatok()
+   {
+      return aktualnyZostatok;
+   }
+   
+   public void vloz(double ciastka)
+   {
+      this.aktualnyZostatok+=ciastka;
+   }
+   
+   public void vyber(double ciastka)
+   {
+      this.aktualnyZostatok-=ciastka;
+   }
+}

@@ -1,0 +1,261 @@
+package zaverecnyProjekt.bankovyUcet;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+/**
+ * Trieda sluzi na uchovavanie sporiacich a beznych uctov. Vykonava zakladne
+ * operacie s nimi a vracia rozne statisticke hodnoty a informacie o uctoch
+ * 
+ * @author Robert Chalcak Tomáš Pajonk, Zuzana Bajakova
+ */
+
+public class BankoveUcty implements Serializable
+{
+   
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 3311561868624786388L;
+   private ArrayList<BankovyUcet> ucty; // uchovava bežné a sporiace účty
+   private BankoveUctyAdapter zapisovac;
+   /**
+    * Vytvara objekt Bankove ucty bez pouzitia parametrov
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public BankoveUcty() throws ClassNotFoundException, IOException
+   {
+      ucty = new ArrayList<BankovyUcet>();
+      zapisovac = new BankoveUctyAdapter();
+      if(ucty.isEmpty())
+      {
+         zapisovac.nacitaj(ucty);
+      }
+      
+   }
+
+   /**
+    * Vygeneruje unikatne ide pozostavajuce z Stringov, ktoré oznacuju ci ide o
+    * bezny alebo sporiaci ucet
+    * 
+    * @param ucet
+    *           ucet, pre ktory je vygenerovaný Identifikator
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public void vygenerujId(BankovyUcet ucet) throws ClassNotFoundException, IOException
+   {
+
+      if (((BankovyUcet) ucet).getTypUctu().equalsIgnoreCase("sporiaci"))
+      {        
+         String id = "spUc";
+         id += ucty.size() + 1;
+         ucet.setId(id);
+         id = "spUc";
+      }
+      else
+      {
+         String id = "bezUc";
+         id += ucty.size() + 1;
+         ucet.setId(id);
+         id = "bezUc";
+      }
+   }
+
+   /**
+    * Pridava ucet do zoznamu, ktory tvori ArrayList a pred tym prideli id uctu
+    * 
+    * @param ucet
+    *           , ktory sa ma pridat do zoznamu
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public void pridajUcet(BankovyUcet ucet) throws ClassNotFoundException, IOException
+   {    
+      zapisovac.nacitaj(ucty);   
+     // BankovyUcet ucet = (BankovyUcet)obj;
+      vygenerujId(ucet);
+      
+      ucty.add(ucet);
+      zapisovac.zapis(ucty);
+   }
+
+   /**
+    * Vykonava prepis zmeneho uctu na konkretnom indexe v ArrayListe
+    * 
+    * @param index
+    *           specifikuje konkretnu poziciu v ArryListe
+    * @param novyUcet
+    *           prepise ucet na konkretnej pozicii
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public void urobZmenuNaUcte(int index, BankovyUcet novyUcet) throws ClassNotFoundException, IOException
+   {
+      //BankovyUcet novyUcet = (BankovyUcet)obj;     
+         zapisovac.nacitaj(ucty);     
+      if (index < 0 || index > ucty.size() - 1)
+      {
+         System.out.println("Ziaden ucet neexistuje!!!");
+         return;
+      }
+      ucty.set(index, novyUcet);
+      zapisovac.zapis(ucty);
+   }
+
+   /**
+    * Vyhlada ucet v zozname s pouzitim integeru, ktory je rovnaky aj pre
+    * klienta
+    * 
+    * @param ajKlientId
+    *           integer, ktory je rovnaky aj pre klienta takze vie sparovat
+    *           klienta s jeho uctom
+    * @return najdeny ucet
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public BankovyUcet vyhladajUcet(int ajKlientId) throws ClassNotFoundException, IOException
+   {
+      //Object najdeny =new BankovyUcet();
+      BankovyUcet najdeny = null;
+      zapisovac.nacitaj(ucty);
+      if (jePrazdnyBU())
+      {
+         System.out.println("Ziaden ucet!!!");
+      }
+      for (int i = 0; i < ucty.size(); i++)
+      {
+         if (ajKlientId == (((BankovyUcet) ucty.get(i)).getRovnakeId()))
+         {
+            najdeny = (BankovyUcet) ucty.get(i);
+         }
+      }
+      return najdeny;
+   }
+
+   /**
+    * Vracia poziciu uctu na zaklade indentifikatora, ktory je rovnaky aj pre
+    * klienta
+    * 
+    * @param ajKlientId
+    *           jedinencne cislo, ktore je zhodné aj u klienta
+    * @return pozicia uctu v ArrayListe
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public int getIndexBu(int ajKlientId) throws ClassNotFoundException, IOException
+   {     
+         zapisovac.nacitaj(ucty);
+    
+      if (jePrazdnyBU())
+      {
+         System.out.println("Ziaden ucet!!!");
+         return -1;
+      }
+      
+      for (int i = 0; i < ucty.size(); i++)
+      {
+         
+         if(ajKlientId==((BankovyUcet) ucty.get(i)).getRovnakeId())
+         {
+            return i;
+         }
+     
+      }
+      return -1;
+   }
+
+   /**
+    * Vracia celkovych doposial registrovanych uctov
+    * 
+    * @return pocet uctov
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public int getPocetBU() throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(ucty);
+      return ucty.size();
+   }
+
+   /**
+    * Vypise kompletny zoznam uctov
+    * 
+    * @return
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public String vratZoznamUctov() throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(ucty);
+      String all = "------------------\n";
+      all += "|     Bankove Ucty     |\n";
+      all += "------------------\n";
+
+      for (int i = 0; i < ucty.size(); i++)
+      {
+         all += ucty.get(i) + "\n";
+         all += "___________________\n";
+      }
+      all += "<><><><><>><><><><>\n";
+      return all;
+   }
+
+   /**
+    * Tak ako predchadzajuca metoda vracia formatovany vystup vsetkych uctov
+    */
+   public String toString()
+   {
+      String all = "";
+      try
+      {
+         zapisovac.nacitaj(ucty);
+      }
+      catch (ClassNotFoundException | IOException e)
+      {
+         e.printStackTrace();
+      }
+      return all;
+   }
+
+   /**
+    * Skontroluje ci v ArrayListe je nejaky ucet
+    * 
+    * @return true ak nie je ziadny ucet,opacne vracia false
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public boolean jePrazdnyBU() throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(ucty);
+      return ucty.size() == 0;
+   }
+   
+   public BankovyUcet vyhladajUcet(String priezvisko) throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(ucty);
+      BankovyUcet najdeny=new BankovyUcet();
+      for(int i =0; i < ucty.size();i++)
+      {
+         if(priezvisko.equalsIgnoreCase(ucty.get(i).getMenoKlienta()))
+         {
+            najdeny =ucty.get(i);
+         }
+      }
+      return najdeny;
+   }
+   public int getIndexBU(String priezvisko) throws ClassNotFoundException, IOException
+   {
+      int index=-1;
+      zapisovac.nacitaj(ucty);
+      for(int i =0; i < ucty.size();i++)
+      {
+         if(priezvisko.equalsIgnoreCase(ucty.get(i).getMenoKlienta()))
+         {
+            index=i;
+         }
+      }
+      return index;
+   }
+}

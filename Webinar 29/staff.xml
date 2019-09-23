@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><company>
+	<staff id="433">
+		
+		<lastname>Ivanovic</lastname>
+		<nickname>Mirec</nickname>
+		<salary>2000000</salary>
+	<age>28</age></staff>
+	<staff id="152">
+		<firstname>Katka</firstname>
+		<lastname>Kratka</lastname>
+		<nickname>Kačou</nickname>
+		<salary>7500</salary>
+	</staff>
+</company>

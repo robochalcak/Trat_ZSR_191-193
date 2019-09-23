@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ucty>
+	<ucet>
+		<meno_klienta>Novak</meno_klienta>
+		<aktualny_zostatok>1500</aktualny_zostatok>
+		<typ_uctu>sporiaci</typ_uctu>
+	</ucet>
+	<ucet>
+		<meno_klienta>Horvath</meno_klienta>
+		<aktualny_zostatok>1000</aktualny_zostatok>
+		<typ_uctu>bežný</typ_uctu>
+	</ucet>
+
+</ucty>

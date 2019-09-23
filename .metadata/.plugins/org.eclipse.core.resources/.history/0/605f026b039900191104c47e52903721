@@ -1,0 +1,70 @@
+package sk.itvkurze.webinar10.udalosti_mysi;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+public class ZobrazovacPohybujucehoObdlznika
+{
+   private static final int SIRKA_OKNA=800;
+   private static final int VYSKA_OKNA=600;
+   
+   public static void main(String[] args)
+   {
+      KomponentaObdlznik komponenta = new KomponentaObdlznik();
+      
+      //vytvorime si vlastny posluchac listener na pocuvanie odchytavnie udalosti genereovanych mysou
+      
+      
+      class StlacenaKlavesaNaMysiPosluchac implements MouseListener
+      {
+
+         @Override
+         public void mouseClicked(MouseEvent e)
+         {
+           
+            
+         }
+
+         @Override
+         public void mouseEntered(MouseEvent e)
+         {
+            // TODO Auto-generated method stub
+            
+         }
+
+         @Override
+         public void mouseExited(MouseEvent e)
+         {
+            // TODO Auto-generated method stub
+            
+         }
+
+         @Override
+         public void mousePressed(MouseEvent udalost)
+         {
+            // ziskat suradnice kurzora po kliknuti mysou
+            
+            int x =udalost.getX();
+            int y =udalost.getY();
+            
+            komponenta.zobraz(x,y);
+            
+         }
+
+         @Override
+         public void mouseReleased(MouseEvent e)
+         {
+            // TODO Auto-generated method stub
+            
+         }
+         
+      }
+      
+   }
+
+}

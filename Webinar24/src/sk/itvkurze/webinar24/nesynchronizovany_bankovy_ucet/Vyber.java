@@ -1,0 +1,40 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+public class Vyber implements Runnable
+{
+   private static final long ONESKORENIE=1; //1 ms = 0.001 sekundy
+   private BankovyUcet ucet;
+   private double ciastka;
+   private int pocetOpakovani;
+   /**
+    * Vytvara novu spustitelnu ulohu
+    * @param ucet bankovy ucet, na ktoru odpocitane financne prostriedky 
+    * @param ciastka
+    * @param POCET_OPAKOVANI
+    */
+   public Vyber(BankovyUcet ucet, double ciastka, int pocetOpakovani)
+   {
+      this.ucet = ucet;
+      this.ciastka = ciastka;
+      this.pocetOpakovani=pocetOpakovani;
+   }
+
+   @Override
+   public void run()
+   {
+      for(int i = 1; i <= pocetOpakovani;i++)
+      {
+         ucet.vyber2(ciastka);
+         try
+         {
+            Thread.sleep(ONESKORENIE);
+         }
+         catch (InterruptedException e)
+         {
+            
+            e.printStackTrace();
+         }
+      }
+      
+   }
+}

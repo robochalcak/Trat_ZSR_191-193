@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Webinar17/src/sk/itvkurze/webinar17/pouzitie_zretazeneho_zoznamu/ZretazenyZoznamTester.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="sk.itvkurze.webinar17.pouzitie_zretazeneho_zoznamu.ZretazenyZoznamTester"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Webinar17"/>
+</launchConfiguration>

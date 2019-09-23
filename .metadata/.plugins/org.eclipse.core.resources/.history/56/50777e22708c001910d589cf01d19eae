@@ -1,0 +1,12 @@
+package sk.itvkurze.webinar07.jednorozmernePole;
+
+public class JednoRozmernePole
+{
+   public static void main(String[]args)
+   {
+      //vytvor pole 5 prvkov (74,34,1,9,0)
+      
+      int[]poleCisiel = new int[5];
+      
+   }
+}

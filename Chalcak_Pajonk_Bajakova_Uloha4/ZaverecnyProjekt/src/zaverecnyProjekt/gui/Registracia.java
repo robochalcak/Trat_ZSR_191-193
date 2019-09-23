@@ -1,0 +1,264 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import zaverecnyProjekt.datum.Datum;
+import zaverecnyProjekt.zamestnanci.Zamestnanci;
+import zaverecnyProjekt.zamestnanci.Zamestnanec;
+/**
+ * Tato trieda sluzi na registraciu noveho zamestnanca banky
+ * Kazdy zamestnanec, ktory spravuje klientov a ich ucty musi
+ * byt registrovany aby sa mohol prihlasit 
+ * @author Robert Chalcak
+ *
+ */
+public class Registracia extends JFrame
+{
+
+   private JFrame frame;
+   private JTextField textFieldMeno;
+   private JTextField textFieldPriezvisko;
+   private JButton btnPridajZamestnancaDo;
+   private JLabel lblDen;
+   private JLabel lblMesiac;
+   private JLabel lblRok;
+   private Datum datum;
+   private JButton btnPrihlasitSa;
+   private PrihlasovacieOkno prihlasenie;
+
+   /**
+    * Launch the application.
+    */
+   
+   //public static void main(String[] args)
+   public void zobrazNoveOkno()
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               Registracia window = new Registracia();
+               window.frame.setVisible(true);
+               //setVisible(true);
+              
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+   
+   /**
+    * Create the application.
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    * @throws FileNotFoundException 
+    */
+   public Registracia() throws FileNotFoundException, ClassNotFoundException, IOException
+   {
+      initialize();
+      this.setVisible(true);
+      prihlasenie = new PrihlasovacieOkno();
+   }
+
+   /**
+    * Initialize the contents of the frame.
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    * @throws FileNotFoundException 
+    */
+   public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException
+   {
+      frame = new JFrame();
+      frame.setBounds(100, 100, 571, 425);
+      frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      frame.setTitle("Registracia noveho zamestnanca");
+      frame.setSize(250, 450);
+      Zamestnanci zamestnanci = new Zamestnanci();
+      
+      GridBagLayout gridBagLayout = new GridBagLayout();
+      gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 10};
+      gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+      gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+      frame.getContentPane().setLayout(gridBagLayout);
+      
+      JLabel lblMeno = new JLabel("Meno:");
+      lblMeno.setToolTipText("");
+      GridBagConstraints gbc_lblMeno = new GridBagConstraints();
+      gbc_lblMeno.anchor = GridBagConstraints.EAST;
+      gbc_lblMeno.insets = new Insets(0, 0, 5, 5);
+      gbc_lblMeno.gridx = 0;
+      gbc_lblMeno.gridy = 1;
+      frame.getContentPane().add(lblMeno, gbc_lblMeno);
+      
+      textFieldMeno = new JTextField(30);
+      GridBagConstraints gbc_textFieldMeno = new GridBagConstraints();
+      gbc_textFieldMeno.insets = new Insets(0, 0, 5, 5);
+      gbc_textFieldMeno.fill = GridBagConstraints.HORIZONTAL;
+      gbc_textFieldMeno.gridx = 1;
+      gbc_textFieldMeno.gridy = 1;
+      frame.getContentPane().add(textFieldMeno, gbc_textFieldMeno);
+      textFieldMeno.setColumns(10);
+      
+      JLabel lblPriezvisko = new JLabel("Priezvisko");
+      GridBagConstraints gbc_lblPriezvisko = new GridBagConstraints();
+      gbc_lblPriezvisko.anchor = GridBagConstraints.EAST;
+      gbc_lblPriezvisko.insets = new Insets(0, 0, 5, 5);
+      gbc_lblPriezvisko.gridx = 0;
+      gbc_lblPriezvisko.gridy = 2;
+      frame.getContentPane().add(lblPriezvisko, gbc_lblPriezvisko);
+      
+      textFieldPriezvisko = new JTextField();
+      GridBagConstraints gbc_textFieldPriezvisko = new GridBagConstraints();
+      gbc_textFieldPriezvisko.insets = new Insets(0, 0, 5, 5);
+      gbc_textFieldPriezvisko.fill = GridBagConstraints.HORIZONTAL;
+      gbc_textFieldPriezvisko.gridx = 1;
+      gbc_textFieldPriezvisko.gridy = 2;
+      frame.getContentPane().add(textFieldPriezvisko, gbc_textFieldPriezvisko);
+      textFieldPriezvisko.setColumns(10);
+      
+      btnPridajZamestnancaDo = new JButton("Pridaj zamestnanca do systemu");
+      GridBagConstraints gbc_btnPridajZamestnancaDo = new GridBagConstraints();
+      gbc_btnPridajZamestnancaDo.insets = new Insets(0, 0, 5, 5);
+      gbc_btnPridajZamestnancaDo.gridx = 1;
+      gbc_btnPridajZamestnancaDo.gridy = 4;
+      btnPridajZamestnancaDo.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent arg0)
+         {
+           
+            if(textFieldMeno.getText().length()==0||textFieldPriezvisko.getText().length()==0)
+           {
+              JOptionPane.showMessageDialog(null, "Priezvisko a meno zamestnanca nemozu ostat prazdne!!!");
+              return;
+           }  
+
+           if(!Character.isUpperCase(textFieldMeno.getText().charAt(0)))
+           {
+              JOptionPane.showMessageDialog(null,"Pravdepodobne ste urobili chybu v mene,\n"
+                    + "meno zacina vzdy s velkym pismenom!");
+              return;
+           }
+           
+           if(!Character.isUpperCase(textFieldPriezvisko.getText().charAt(0)))
+           {
+              JOptionPane.showMessageDialog(null,"Pravdepodobne ste urobili chybu v priezvisku,\n"
+                    + "priezvisko zacina vzdy s velkym pismenom!");
+              return;
+           }
+           
+            Zamestnanec zamestnanec = new Zamestnanec(textFieldMeno.getText(),textFieldPriezvisko.getText());
+            try
+            {
+               zamestnanci.vygenerujId(zamestnanec);
+            }
+            catch (ClassNotFoundException | IOException e1)
+            {
+               // TODO Auto-generated catch block
+               e1.printStackTrace();
+            }
+            try
+            {
+               try
+               {
+                  zamestnanci.pridajZamestnanca(zamestnanec);
+               }
+               catch (ClassNotFoundException e)
+               {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+               }
+            }
+            catch (IOException e)
+            {
+               JOptionPane.showMessageDialog(null, "Nastala chyba pri zapise do suboru .");
+               e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(null, "Zamestnanec: "+zamestnanec.getMeno()+" bol uspesne pridany do systemu\n");
+            JOptionPane.showMessageDialog(null,"Bolo mu pridelene ID: "+zamestnanec.getId());   
+            textFieldMeno.setText("");
+            textFieldPriezvisko.setText("");  
+                             
+         }
+         
+      });
+      frame.getContentPane().add(btnPridajZamestnancaDo, gbc_btnPridajZamestnancaDo);
+      
+      datum = new Datum();
+      String den ="" +datum.getDen();
+      String mesiac = datum.getNazovMesiaca();
+      String rok = ""+datum.getRok();
+      
+      btnPrihlasitSa = new JButton("Prihlasit sa");
+      GridBagConstraints gbc_btnPrihlasitSa = new GridBagConstraints();
+      gbc_btnPrihlasitSa.insets = new Insets(0, 0, 5, 5);
+      gbc_btnPrihlasitSa.gridx = 1;
+      gbc_btnPrihlasitSa.gridy = 5;
+      btnPrihlasitSa.addActionListener(new ActionListener()
+      {
+         
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            //setVisible(false);
+            frame.setVisible(true);
+            close();
+            dispose();           
+            prihlasenie.zobrazNoveOkno();
+         }
+      });
+      frame.getContentPane().add(btnPrihlasitSa, gbc_btnPrihlasitSa);
+      
+      lblDen = new JLabel(den);
+      GridBagConstraints gbc_lblDen = new GridBagConstraints();
+      gbc_lblDen.insets = new Insets(0, 0, 0, 5);
+      gbc_lblDen.gridx = 2;
+      gbc_lblDen.gridy = 12;
+      frame.getContentPane().add(lblDen, gbc_lblDen);
+      
+      lblMesiac = new JLabel(mesiac);
+      GridBagConstraints gbc_lblMesiac = new GridBagConstraints();
+      gbc_lblMesiac.insets = new Insets(0, 0, 0, 5);
+      gbc_lblMesiac.gridx = 3;
+      gbc_lblMesiac.gridy = 12;
+      frame.getContentPane().add(lblMesiac, gbc_lblMesiac);
+      
+      lblRok = new JLabel(rok);
+      GridBagConstraints gbc_lblRok = new GridBagConstraints();
+      gbc_lblRok.insets = new Insets(0, 0, 0, 5);
+      gbc_lblRok.gridx = 4;
+      gbc_lblRok.gridy = 12;
+      frame.getContentPane().add(lblRok, gbc_lblRok);
+   }
+   
+   public void close()
+   {
+      WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+      Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+      this.setVisible(false);
+   }
+
+  
+}

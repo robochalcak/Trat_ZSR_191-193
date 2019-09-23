@@ -1,0 +1,30 @@
+<?xml version="1.0 encoding-"UTF-8" ?>
+
+<trieda>
+<nazovTriedy>2.C</nazovTriedy>
+	<studenty>
+		<student id="12334">
+		<meno>Peter</meno>
+		<priezvisko>Novak</priezvisko>
+		<prezyvka>Pietro</prezyvka>
+		<priemerZnamok>1.55</priemerZnamok>		
+	    </student>
+	<student id="12335">
+		<meno>Karol</meno>
+		<priezvisko>Horvath</priezvisko>
+		<prezyvka>Kajo</prezyvka>
+		<priemerZnamok>3.22</priemerZnamok>
+		
+	</student>
+	<student id="12336">
+		<meno>Monika</meno>
+		<priezvisko>Drobna</priezvisko>
+		<prezyvka>Monca</prezyvka>
+		<priemerZnamok>1.15</priemerZnamok>
+		
+	</student>
+	
+	</studenty>
+	
+
+</trieda>

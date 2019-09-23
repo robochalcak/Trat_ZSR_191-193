@@ -1,0 +1,134 @@
+Triedy:
+
+BankovyUcet
+BeznyUcet extends BankovyUcet
+SporiaciUcet extend BankovyUcet
+Zamestnanec
+Zamestnanci
+Klient
+Klienti
+Banka 
+Datum
+
+
+
+
+Trieda: Zamestnanec
+
+String meno
+String ID
+
+Metody:
+getMeno();
+getId();
+toString();
+
+Trieda: Zamestnanci
+
+ArrayList<Zamestnanec>Zamestnanci 
+
+Metody:
+pridajZamenstnanca(Zamestnanec zamestnanec);
+vyhladatZamestnanca(String ID);
+boolean jeZamestnanec(String ID);
+vratZoznamZamestnancov();
+
+Trieda: Klient
+
+String meno
+String priezvisko
+long rodneCislo;
+int id
+
+Metody:
+setMeno(String meno);
+sePriezvisko(String priezvisko);
+setRodneCislo(long rodneCislo);
+setId();
+
+getMeno();
+getPriezvisko();
+getRodneCislo();
+getId();
+toString();
+
+
+Trieda: Klienti
+ArrayList<Klient>klienti
+
+Metody:
+zaregistrovatKlienta(Klient klient);
+vymazatKlienta(String meno);
+najdiKlienta(String priezvisko, String meno, long rodneCislo, int id);
+boolean jeKlient(String priezvisko, String meno, long rodneCislo);
+
+
+
+Trieda: BankovyUcet
+
+int id
+double aktualnyZostatok;
+static final double PREVYSUJUCI_VKLAD=10000;
+static final double BEZNY_UROK = 0.02;
+static final double VIP_UROK=0.05;
+
+Metody:
+vloz(double ciastka);
+vyber(double ciastka);
+vratAktualnyZostatok();
+int getId();
+getPrevysujuciVKlad();
+getBeznyUrokSadzba();
+getViPUrokSadzba();
+
+String toString();
+
+Trieda: BeznyUcet extends BankovyUcet
+static final POCIATOCNY_ZOSTATOK=100;
+
+Trieda: SporiaciUcet extends BankovyUcet
+static final POCIATOCNY_ZOSTATOK=50;
+
+double urokovaSadzba;
+
+Metody:
+pripisUrok(double urokovaSadzba);
+
+Trieda: Datum
+
+int den
+int mesiac 
+int rok
+
+Metody:
+setDen(int den);
+setMesiac(int mesiac)
+setRok(int rok)
+
+getDen();
+getMesiac();
+getRok();
+
+jePrestupnyRok();
+
+vratNazovMesiaca(int mesiac);
+
+vratAktualnyDatum();
+
+toString();
+
+
+
+Trieda: Banka
+
+Metody:
+ZalozenieNovehoUctu();
+VytvorVklad();
+vytvor vyber();
+vypisInfoOUcte();
+
+
+
+
+
+

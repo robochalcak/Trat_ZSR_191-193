@@ -1,0 +1,14 @@
+package databazaTest;
+
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class DatabazaTest
+{
+
+   public static void main(String[] args)
+   {
+      KlientiAdaper adapterKl = new KlientiAdapter();
+
+   }
+
+}

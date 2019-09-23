@@ -1,0 +1,314 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.color.CMMException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUctyAdapter;
+import zaverecnyProjekt.klienti.KlientiAdapter;
+
+public class DBTabulka extends JFrame
+{
+
+   private JPanel contentPane;
+   private JTable table;
+   private JPanel pnlPraca;
+   private String user;
+   private String password;
+
+   /**
+    * Launch the application.
+    * @throws Exception 
+    */
+   // public static void main(String[] args)
+   public void spustDB() throws Exception
+   {
+
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               DBTabulka frame = new DBTabulka();
+               frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the frame.
+    * @throws Exception 
+    */
+   public DBTabulka() throws Exception
+   {
+
+      this.user = JOptionPane
+            .showInputDialog("Zadajte prístupové meno pre databázový server: ");
+      this.password = JOptionPane
+            .showInputDialog("Zadajte prístupové heslo pre databázový server:");
+      try
+      {
+         KlientiAdapter tester = new KlientiAdapter();
+         tester.vytvorSpojenieSDB(user, password);
+         tester.zrusSpojenie();
+      }
+      catch (SQLException ex)
+      {
+
+         JOptionPane
+               .showMessageDialog(
+                     null,
+                     "Pravdepodobne ste zle zadali meno a heslo k prístupu do databázy. \nVoľbu opakujte, alebo kontaktujte systémového administrátora.");
+         return;
+      }
+      initialize();
+
+   }
+
+   public void initialize()
+   {
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setBounds(100, 100, 1023, 470);
+      contentPane = new JPanel();
+      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      setContentPane(contentPane);
+      contentPane.setLayout(null);
+
+      JPanel pnlTabulkaKlienti = new JPanel();
+      pnlTabulkaKlienti.setForeground(Color.DARK_GRAY);
+      pnlTabulkaKlienti.setBounds(0, 116, 478, 315);
+      contentPane.add(pnlTabulkaKlienti);
+      pnlTabulkaKlienti.setLayout(null);
+
+      JScrollPane scrollPane = new JScrollPane();
+      scrollPane.setViewportBorder(new CompoundBorder());
+      scrollPane.setBounds(10, 11, 452, 267);
+      pnlTabulkaKlienti.add(scrollPane);
+
+      JLabel lblNazov = new JLabel();
+      lblNazov.setFont(new Font("Verdana", Font.BOLD, 15));
+      lblNazov.setForeground(Color.DARK_GRAY);
+      lblNazov.setBounds(48, 91, 372, 28);
+      lblNazov.setText("Zoznám všetkých klientov banky ");
+      contentPane.add(lblNazov);
+
+      table = new JTable();
+
+      scrollPane.setViewportView(table);
+
+      pnlPraca = new JPanel();
+      pnlPraca.setBounds(0, 0, 677, 95);
+      contentPane.add(pnlPraca);
+
+      pnlPraca.setLayout(null);
+
+      JComboBox cbUcty = new JComboBox();
+      cbUcty.setFont(new Font("Verdana", Font.BOLD, 15));
+      cbUcty.setForeground(Color.DARK_GRAY);
+      cbUcty.setModel(new DefaultComboBoxModel(new String[] {
+            "Triedič a zobrazovač účtov ", "Všetky účty ", "Bežné účty",
+            "Sporiace účty ", "Všetky účty podľa aktuálneho zostatku ",
+            "Všetky bežné účty podľa  aktuálneho zostatku",
+            "Všetky sporiace účty podľa aktuálneho zostatku ",
+            "Všetky účty  podľa úrokovej sadzby " }));
+      cbUcty.setBounds(272, 11, 405, 34);
+      pnlPraca.add(cbUcty);
+
+      JButton btnKlienti = new JButton("Načítaj z databázy klientov");
+      btnKlienti.setBackground(new Color(241, 57, 83));
+      btnKlienti.addActionListener(new ActionListener()
+      {
+         public void actionPerformed(ActionEvent e)
+         {
+
+            try
+            {
+               KlientiAdapter db = new KlientiAdapter();
+               String select = "SELECT * FROM banka_db.klienti";
+               db.vytvorSpojenieSDB(user, password);
+               table = db.nacitajDoTabulky(table, select);
+            }
+            catch (SQLException ex)
+            {
+
+               JOptionPane
+                     .showMessageDialog(
+                           null,
+                           "Pravdepodobne ste zle zadali meno a heslo k prístupu do databázy. \nVoľbu opakujte, alebo kontaktujte systémového administrátora.");
+               return;
+            }
+            catch (Exception exc)
+            {
+               return;
+            }
+         }
+      });
+      btnKlienti.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnKlienti.setForeground(Color.DARK_GRAY);
+      btnKlienti.setBounds(10, 11, 255, 34);
+      pnlPraca.add(btnKlienti);
+
+      JButton btnUcty = new JButton("Načítaj všetky účty  ");
+      btnUcty.setForeground(Color.DARK_GRAY);
+      btnUcty.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnUcty.setBackground(new Color(241, 57, 83));
+      btnUcty.setBounds(10, 56, 255, 34);
+
+      btnUcty.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            try
+            {
+               BankoveUctyAdapter db = new BankoveUctyAdapter();
+               String select = vytvorSQLPrikaz(cbUcty.getSelectedItem()
+                     .toString());
+               db.vytvorSpojenieSDB(user, password);
+
+               table = db.nacitajDoTabulky(table, select);
+            }
+            catch (SQLException ex)
+            {
+
+               JOptionPane
+                     .showMessageDialog(
+                           null,
+                           "Pravdepodobne ste zle zadali meno a heslo k prístupu do databázy. \nVoľbu opakujte, alebo kontaktujte systémového administrátora.");
+               return;
+            }
+            catch (Exception exc)
+            {
+               return;
+            }
+
+         }
+      });
+      pnlPraca.add(btnUcty);
+      
+      JButton btnKlAUc = new JButton("Klienti spolu s účtami ");
+      btnKlAUc.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            
+            try
+            {
+               BankoveUctyAdapter db = new BankoveUctyAdapter();
+               KlientiAdapter db2 = new KlientiAdapter();
+               String select = vytvorSQLPrikaz(cbUcty.getSelectedItem()
+                     .toString());
+               db.vytvorSpojenieSDB(user, password);
+
+               table = db.nacitajDoTabulky(table, select);
+            }
+            catch (SQLException ex)
+            {
+
+               JOptionPane
+                     .showMessageDialog(
+                           null,
+                           "Pravdepodobne ste zle zadali meno a heslo k prístupu do databázy. \nVoľbu opakujte, alebo kontaktujte systémového administrátora.");
+               return;
+            }
+            catch (Exception exc)
+            {
+               return;
+            }
+         }
+      });
+      btnKlAUc.setForeground(Color.DARK_GRAY);
+      btnKlAUc.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnKlAUc.setBackground(new Color(241, 57, 83));
+      btnKlAUc.setBounds(272, 56, 405, 34);
+      pnlPraca.add(btnKlAUc);
+      cbUcty.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent arg0)
+         {
+            try
+            {
+               BankoveUctyAdapter db = new BankoveUctyAdapter();
+               String select = vytvorSQLPrikaz(cbUcty.getSelectedItem()
+                     .toString());
+               db.vytvorSpojenieSDB(user, password);
+
+               table = db.nacitajDoTabulky(table, select);
+            }
+            catch (SQLException ex)
+            {
+
+               JOptionPane
+                     .showMessageDialog(
+                           null,
+                           "Pravdepodobne ste zle zadali meno a heslo k prístupu do databázy. \nVoľbu opakujte, alebo kontaktujte systémového administrátora.");
+               return;
+            }
+            catch (Exception exc)
+            {
+               return;
+            }
+
+         }
+
+      });
+
+   }
+
+   private String vytvorSQLPrikaz(String comItem)
+   {
+      String sqlQuery = "SELECT * FROM banka_db.ucty";
+      switch (comItem)
+      {
+         case "Triedič a zobrazovač účtov ":
+            break;
+         case "Všetky účty":
+            sqlQuery = "SELECT * FROM banka_db.ucty";
+            break;
+         case "Bežné účty":
+            sqlQuery = "SELECT * FROM banka_db.ucty WHERE typUctu='Bežný'";
+            break;
+         case "Sporiace účty ":
+            sqlQuery = "SELECT * FROM banka_db.ucty WHERE cisloUctu > 4999";
+            break;
+         case "Všetky účty podľa aktuálneho zostatku ":
+            sqlQuery = "SELECT * FROM banka_db.ucty ORDER BY aktualnyZostatok";
+            break;
+         case "Všetky bežné účty podľa  aktuálneho zostatku":
+            sqlQuery = "SELECT * FROM banka_db.ucty WHERE typUctu='Bežný' ORDER BY aktualnyZostatok";
+            break;
+         case "Všetky sporiace účty podľa aktuálneho zostatku ":
+            sqlQuery = "SELECT * FROM banka_db.ucty WHERE typUctu='sporiaci' ORDER BY aktualnyZostatok";
+            break;
+         case "Všetky účty  podľa úrokovej sadzby ":
+            sqlQuery = "SELECT * FROM banka_db.ucty ORDER BY urok";
+            break;
+      }
+      return sqlQuery;
+
+   }
+}

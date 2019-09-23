@@ -1,0 +1,205 @@
+package zaverecnyProjekt.klienti;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import zaverecnyProjekt.vygenerujId.VygenerujId;
+
+/**
+ * Trieda uchovava vsetkych klientov banky v zozname
+ * 
+ * @author Robert Chalcak Tomas Pajonk, Zuzana Bajakova
+ */
+
+public class Klienti implements VygenerujId
+{
+   private ArrayList<Object> klienti; // uchovava všetkých klientov banky
+   private KlientiAdapter zapisovac;
+   /**
+    * Vytvara prazdny objekt zoznamu klientov
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public Klienti() throws ClassNotFoundException, IOException
+   {
+      klienti = new ArrayList<Object>();
+      zapisovac = new KlientiAdapter();
+      zapisovac.nacitaj(klienti);
+   }
+
+   /**
+    * Vygeneruje jedinencne id pre klienta
+    */
+   @Override
+   public void vygenerujId(Object obj)
+   {
+      Klient klient = (Klient) obj;
+      String id = "KLBO";
+      id += klienti.size() + 1;
+      klient.setId(id);
+      id = "KLBO";
+
+   }
+
+   /**
+    * Pridava klienta do zoznamu, pred tým mu prideli ID
+    * 
+    * @param klient
+    *           ktorý je pridaný do zoznamu
+    * @throws IOException 
+    * @throws FileNotFoundException 
+    * @throws ClassNotFoundException 
+    */
+   public void pridajKlienta(Object obj) throws FileNotFoundException, IOException, ClassNotFoundException
+   {
+      Klient klient = (Klient)obj;
+      zapisovac.nacitaj(klienti);
+      vygenerujId(klient);
+      klienti.add(klient);
+      zapisovac.zapis(klienti);
+   }
+
+   /**
+    * Vyhlada klienta podla parametrov
+    * 
+    * @param priezvisko
+    *           klienta
+    * @param rodneCislo
+    *           klienta
+    * @return vrati najdeneho klienta
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public Klient vyhladajKlienta(String priezvisko, long rodneCislo) throws ClassNotFoundException, IOException
+   {
+      Klient najdeny = new Klient();
+      zapisovac.nacitaj(klienti);
+
+      for (int i = 0; i < klienti.size(); i++)
+      {
+         if (priezvisko.equalsIgnoreCase(((Klient) klienti.get(i)).getPriezvisko())
+               && rodneCislo == ((Klient) klienti.get(i)).getRodneCislo())
+         {
+            najdeny = (Klient) klienti.get(i);
+         }
+      }
+      return najdeny;
+   }
+
+   /**
+    * Vrati index - poziciu klienta v ArrayListe na základe parametrov
+    * 
+    * @param priezvisko
+    *           klienta
+    * @param rodneCislo
+    *           klienta
+    * @return pozicia klienta
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public int getIndexKlienta(String priezvisko, long rodneCislo) throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(klienti);
+      for (int i = 0; i < klienti.size(); i++)
+      {
+         if (priezvisko.equalsIgnoreCase(((Klient) klienti.get(i)).getPriezvisko())
+               && rodneCislo == ((Klient) klienti.get(i)).getRodneCislo())
+         {
+            return i;
+         }
+      }
+      return -1;
+   }
+
+   /**
+    * Vymaze klienta zo zoznamu a nasledne ho vrati parameter
+    * 
+    * @param index
+    *           pozicia klienta, ktorá má byt vymazana
+    * @return vymazany klient
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public Klient vymazKlienta(int index) throws ClassNotFoundException, IOException
+   {
+      zapisovac.nacitaj(klienti);
+      Klient naVymazanie = (Klient) klienti.get(index);      
+      klienti.remove(index);
+      zapisovac.zapis(klienti);
+      return naVymazanie;
+   }
+
+   /**
+    * Vymaze klienta podla parametrov
+    * 
+    * @param priezvisko
+    *           klienta
+    * @param rodneCislo
+    *           klienta
+    * @return vymazaného klienta
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public Klient vymazKliena(String priezvisko, long rodneCislo) throws ClassNotFoundException, IOException
+   {
+      Klient vymazany = null;
+      zapisovac.nacitaj(klienti);
+      for (int i = 0; i < klienti.size(); i++)
+      {
+         if (priezvisko.equalsIgnoreCase(((Klient) klienti.get(i)).getPriezvisko())
+               && rodneCislo == ((Klient) klienti.get(i)).getRodneCislo())
+         {
+            vymazany = vymazKlienta(i);
+            vymazKlienta(i);
+         }
+      }
+      return vymazany;
+   }
+
+   /**
+    * Overí ci zadane parametre patria klientovi, ci nie
+    * 
+    * @param priezvisko
+    * @param rodneCislo
+    * @return false alebo true
+    * @throws IOException 
+    * @throws ClassNotFoundException 
+    */
+   public boolean jeKlient(String priezvisko, long rodneCislo) throws ClassNotFoundException, IOException
+   {
+      return vyhladajKlienta(priezvisko, rodneCislo).getPriezvisko()
+            .equalsIgnoreCase(priezvisko)
+            && vyhladajKlienta(priezvisko, rodneCislo).getRodneCislo() == rodneCislo;
+   }
+
+   /**
+    * Vrati vsetkych klientov banky vo formatovanom vystupe
+    */
+   public String toString()
+   {
+      try
+      {
+         zapisovac.nacitaj(klienti);
+      }
+      catch (ClassNotFoundException e)
+      {        
+         e.printStackTrace();
+      }
+      catch (IOException e)
+      {       
+         e.printStackTrace();
+      }
+      String all = "----------------------------------\n";
+      all += "|          NAŠÍ KLIENTI          |\n";
+      all += "----------------------------------\n";
+      for (int i = 0; i < klienti.size(); i++)
+      {
+         all += klienti.get(i) + "\n";
+         all += "_________________________________\n";
+      }
+      all += "<><><><><><><><><><><><><><><><><>\n";
+
+      return all;
+   }
+}

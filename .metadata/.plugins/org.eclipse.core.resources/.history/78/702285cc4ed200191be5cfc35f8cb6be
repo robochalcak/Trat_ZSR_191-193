@@ -1,0 +1,369 @@
+package zaverecnyProjekt.gui;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import zaverecnyProjekt.bankovyUcet.BankoveUcty;
+import zaverecnyProjekt.bankovyUcet.BankovyUcet;
+import zaverecnyProjekt.klienti.Klient;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JPanel;
+
+public class PracaSUctom
+{
+
+   private JFrame frame;
+   private JTextField txtPrezvisko;
+   private JTextField txtMeno;
+   private JTextField txtKlientId;
+   private JTextField txtCisloUctu;
+   private JTextField txtTypUctu;
+   private JTextField txtZostatok;
+   private JTextField txtUrok;
+   private JTextField txtRodneCislo;
+
+   /**
+    * Launch the application.
+    * @param klient 
+    * @param ucet 
+    */
+   public void pracaSUctom(Klient klient, BankovyUcet ucet)
+   {
+      EventQueue.invokeLater(new Runnable()
+      {
+         public void run()
+         {
+            try
+            {
+               PracaSUctom window = new PracaSUctom(klient, ucet);
+               window.frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the application.
+    * @param klient
+    * @param ucet 
+    */
+   public PracaSUctom(Klient klient, BankovyUcet ucet)
+   {
+      initialize(klient, ucet);
+   }
+
+   /**
+    * Initialize the contents of the frame.
+    * @param klient
+    * @param ucet 
+    */
+   private void initialize(Klient klient, BankovyUcet ucet)
+   {
+      frame = new JFrame();
+      frame.getContentPane().setBackground(Color.WHITE);
+      frame.setBounds(100, 100, 850, 932);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setTitle("Práca s klientom a s účtom ");
+      JLabel lblKlient = new JLabel("                    KLIENT");
+      lblKlient.setBounds(324, 11, 315, 27);
+      lblKlient.setForeground(Color.DARK_GRAY);
+      lblKlient.setFont(new Font("Verdana", Font.BOLD, 20));
+
+      JLabel lblUcet = new JLabel("ÚČET");
+      lblUcet.setFont(new Font("Tahoma", Font.BOLD, 20));
+      lblUcet.setForeground(Color.DARK_GRAY);
+      lblUcet.setBounds(451, 408, 84, 25);
+      frame.getContentPane().setLayout(null);
+      frame.getContentPane().add(lblUcet);
+      frame.getContentPane().add(lblKlient);
+      
+      JPanel pnlKlient = new JPanel();
+      pnlKlient.setBounds(350, 50, 474, 341);
+      frame.getContentPane().add(pnlKlient);
+      pnlKlient.setLayout(null);
+      
+            txtRodneCislo = new JTextField();
+            txtRodneCislo.setBackground(Color.WHITE);
+            txtRodneCislo.setBounds(223, 270, 225, 48);
+            pnlKlient.add(txtRodneCislo);
+            txtRodneCislo.setFont(new Font("Verdana", Font.BOLD, 15));
+            txtRodneCislo.setForeground(Color.DARK_GRAY);
+            txtRodneCislo.setColumns(10);
+            txtRodneCislo.setText(klient.getRodneCislo() + "");
+            txtRodneCislo.setEditable(false);
+            
+                  JLabel lblRodneCislo = new JLabel("Rodné číslo: ");
+                  lblRodneCislo.setBounds(223, 253, 108, 14);
+                  pnlKlient.add(lblRodneCislo);
+                  lblRodneCislo.setFont(new Font("Verdana", Font.BOLD, 15));
+                  lblRodneCislo.setForeground(Color.DARK_GRAY);
+                  
+                        txtKlientId = new JTextField();
+                        txtKlientId.setBackground(Color.WHITE);
+                        txtKlientId.setBounds(223, 191, 225, 48);
+                        pnlKlient.add(txtKlientId);
+                        txtKlientId.setFont(new Font("Verdana", Font.BOLD, 15));
+                        txtKlientId.setForeground(Color.DARK_GRAY);
+                        txtKlientId.setColumns(10);
+                        txtKlientId.setText(klient.getRovnakeId() + "");
+                        txtKlientId.setEditable(false);
+                        
+                              JLabel lblIdKlienta = new JLabel("Číslo klienta :");
+                              lblIdKlienta.setBounds(223, 171, 124, 20);
+                              pnlKlient.add(lblIdKlienta);
+                              lblIdKlienta.setFont(new Font("Verdana", Font.BOLD, 15));
+                              lblIdKlienta.setForeground(Color.DARK_GRAY);
+                              
+                                    txtMeno = new JTextField();
+                                    txtMeno.setBounds(223, 112, 225, 48);
+                                    pnlKlient.add(txtMeno);
+                                    txtMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+                                    txtMeno.setBackground(Color.WHITE);
+                                    txtMeno.setForeground(Color.DARK_GRAY);
+                                    txtMeno.setColumns(10);
+                                    txtMeno.setText(klient.getMeno());
+                                    txtMeno.setEditable(false);
+                                    
+                                          JLabel lblMeno = new JLabel("Krstné meno :");
+                                          lblMeno.setBounds(223, 90, 124, 28);
+                                          pnlKlient.add(lblMeno);
+                                          lblMeno.setFont(new Font("Verdana", Font.BOLD, 15));
+                                          lblMeno.setForeground(Color.DARK_GRAY);
+                                          
+                                                txtPrezvisko = new JTextField();
+                                                txtPrezvisko.setBackground(Color.WHITE);
+                                                txtPrezvisko.setBounds(223, 31, 225, 48);
+                                                pnlKlient.add(txtPrezvisko);
+                                                txtPrezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                txtPrezvisko.setForeground(Color.DARK_GRAY);
+                                                txtPrezvisko.setColumns(10);
+                                                txtPrezvisko.setText(klient.getPriezvisko());
+                                                txtPrezvisko.setEditable(false);
+                                                
+                                                      JLabel lblPriezvisko = new JLabel("Priezvisko:");
+                                                      lblPriezvisko.setBounds(223, 11, 124, 27);
+                                                      pnlKlient.add(lblPriezvisko);
+                                                      lblPriezvisko.setForeground(Color.DARK_GRAY);
+                                                      lblPriezvisko.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                      
+                                                      JPanel pnlUcet = new JPanel();
+                                                      pnlUcet.setBounds(350, 444, 474, 365);
+                                                      frame.getContentPane().add(pnlUcet);
+                                                      pnlUcet.setLayout(null);
+                                                      
+                                                            txtCisloUctu = new JTextField();
+                                                            txtCisloUctu.setBackground(Color.WHITE);
+                                                            txtCisloUctu.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                            txtCisloUctu.setForeground(Color.DARK_GRAY);
+                                                            txtCisloUctu.setBounds(226, 54, 224, 43);
+                                                            pnlUcet.add(txtCisloUctu);
+                                                            txtCisloUctu.setColumns(10);
+                                                            txtCisloUctu.setText(ucet.getRovnakeId() + "");
+                                                            txtCisloUctu.setEditable(false);
+                                                            
+                                                                  JLabel lblCisloUctu = new JLabel("Číslo účtu:");
+                                                                  lblCisloUctu.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                  lblCisloUctu.setForeground(Color.DARK_GRAY);
+                                                                  lblCisloUctu.setBounds(226, 23, 134, 20);
+                                                                  pnlUcet.add(lblCisloUctu);
+                                                                  
+                                                                        JLabel lblTypUctu = new JLabel("Typ účtu:");
+                                                                        lblTypUctu.setForeground(Color.DARK_GRAY);
+                                                                        lblTypUctu.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                        lblTypUctu.setBounds(226, 108, 134, 20);
+                                                                        pnlUcet.add(lblTypUctu);
+                                                                        
+                                                                              txtTypUctu = new JTextField();
+                                                                              txtTypUctu.setBackground(Color.WHITE);
+                                                                              txtTypUctu.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                              txtTypUctu.setForeground(Color.DARK_GRAY);
+                                                                              txtTypUctu.setBounds(225, 139, 225, 43);
+                                                                              pnlUcet.add(txtTypUctu);
+                                                                              txtTypUctu.setColumns(10);
+                                                                              txtTypUctu.setText(ucet.getTypUctu());
+                                                                              txtTypUctu.setEditable(false);
+                                                                              
+                                                                                    JLabel lblAktualnyZostatok = new JLabel("Aktuálny zostatok: ");
+                                                                                    lblAktualnyZostatok.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                                    lblAktualnyZostatok.setForeground(Color.DARK_GRAY);
+                                                                                    lblAktualnyZostatok.setBounds(226, 193, 166, 20);
+                                                                                    pnlUcet.add(lblAktualnyZostatok);
+                                                                                    
+                                                                                          txtZostatok = new JTextField();
+                                                                                          txtZostatok.setBackground(Color.WHITE);
+                                                                                          txtZostatok.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                                          txtZostatok.setForeground(Color.DARK_GRAY);
+                                                                                          txtZostatok.setBounds(226, 225, 225, 43);
+                                                                                          pnlUcet.add(txtZostatok);
+                                                                                          txtZostatok.setColumns(10);
+                                                                                          txtZostatok.setText(ucet.getAktualnyZostatok() + " Eur.");
+                                                                                          txtZostatok.setEditable(false);
+                                                                                          
+                                                                                                JLabel lblUrokovaSadzba = new JLabel("Úroková sadzba: ");
+                                                                                                lblUrokovaSadzba.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                                                lblUrokovaSadzba.setForeground(Color.DARK_GRAY);
+                                                                                                lblUrokovaSadzba.setBounds(226, 284, 166, 14);
+                                                                                                pnlUcet.add(lblUrokovaSadzba);
+                                                                                                
+                                                                                                      txtUrok = new JTextField();
+                                                                                                      txtUrok.setBackground(Color.WHITE);
+                                                                                                      txtUrok.setFont(new Font("Verdana", Font.BOLD, 15));
+                                                                                                      txtUrok.setForeground(Color.DARK_GRAY);
+                                                                                                      txtUrok.setBounds(226, 305, 225, 43);
+                                                                                                      pnlUcet.add(txtUrok);
+                                                                                                      txtUrok.setColumns(10);
+                                                                                                      txtUrok.setText(ucet.getUrok() + "%");
+                                                                                                      txtUrok.setEditable(false);
+                                                                                                      
+                                                                                                      JPanel panel = new JPanel();
+                                                                                                      panel.setBackground(Color.DARK_GRAY);
+                                                                                                      panel.setBounds(0, 0, 305, 850);
+                                                                                                      frame.getContentPane().add(panel);
+                                                                                                      panel.setLayout(null);
+
+      JMenuBar menuBar = new JMenuBar();
+      frame.setJMenuBar(menuBar);
+
+      JButton btnVklad = new JButton("Vklad na účet");
+      btnVklad.setForeground(Color.DARK_GRAY);
+      btnVklad.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnVklad.setBackground(new Color(241, 57, 83));
+      btnVklad.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            
+
+            try
+            {
+               BankoveUcty ucty = new BankoveUcty();
+               BankovyUcet zmena = new BankovyUcet();
+               zmena = ucty.vyhladajUcet(txtPrezvisko.getText());
+               double vklad = Double.parseDouble(JOptionPane
+                     .showInputDialog("Aky vklad chcete uskutocnit?: "));
+               
+               if((String vklad2 = String.valueOf(vklad)))
+               {
+                  return;
+               }
+
+               while (vklad < 0.0)
+               {
+                  JOptionPane.showMessageDialog(null,
+                        "Nedostatočný  vklad. Vklad musí byť viac " + 0
+                              + " Eur.");
+                  vklad = Double.parseDouble(JOptionPane
+                        .showInputDialog("Aký vklad chcete uskutočniť: "));
+                  ;
+               }
+               
+               
+
+               zmena.vloz(vklad);
+               zmena.pripisUrok();
+               ucty.urobZmenuNaUcte(ucty.getIndexBU(txtPrezvisko.getText()),
+                     zmena);
+               JOptionPane.showMessageDialog(null, "Vklad vo výške " + vklad
+                     + " Eur bol úspešné vložený na účet.");
+               txtZostatok.setText(zmena.getAktualnyZostatok() + "");
+               txtUrok.setText(zmena.getUrok() + "%");
+            }
+            catch (ClassNotFoundException e2)
+            {
+               e2.printStackTrace();
+            }
+            catch (IOException e2)
+            {
+               e2.printStackTrace();
+            }
+         }
+      });
+      menuBar.add(btnVklad);
+
+      JButton btnVyber = new JButton("Vyber z účtu");
+      btnVyber.setFont(new Font("Verdana", Font.BOLD, 15));
+      btnVyber.setForeground(Color.DARK_GRAY);
+      btnVyber.setBackground(new Color(241, 57, 83));
+      btnVyber.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+
+            try
+            {
+               BankoveUcty ucty = new BankoveUcty();
+               double vyber = Double.parseDouble(JOptionPane
+                     .showInputDialog("Kolko eur si prajete vybrat? "));
+               double zostatok = ucty.vyhladajUcet(txtPrezvisko.getText())
+                     .getAktualnyZostatok();
+
+               while (vyber > zostatok)
+               {
+                  JOptionPane.showMessageDialog(null,
+                        "Na účte nie je dostatok finančných prostriedkov!");
+
+                  System.out.println("Koľko Eur si požadujete vybrať z účtu? ");
+                  vyber = Double.parseDouble(JOptionPane
+                        .showInputDialog("Koľko eur si prajete vybrať? "));
+               }
+               BankovyUcet zmena = ucty.vyhladajUcet(txtPrezvisko.getText());
+
+               zmena.vyber(vyber);
+               ucty.urobZmenuNaUcte(ucty.getIndexBU(txtPrezvisko.getText()),
+                     zmena);
+               JOptionPane.showMessageDialog(null, "Vyber vo výške " + vyber
+                     + " Eur bol úspešné zrealizovaný.");
+               txtZostatok.setText(zmena.getAktualnyZostatok() + "");
+               txtUrok.setText(zmena.getUrok() + "%");
+            }
+            catch (ClassNotFoundException e2)
+            {
+               e2.printStackTrace();
+            }
+            catch (IOException ex)
+            {
+               ex.printStackTrace();
+            }
+         }
+      });
+      menuBar.add(btnVyber);
+
+      JButton btnKoniec = new JButton("Koniec");
+      btnKoniec.setFont(new Font("Tahoma", Font.BOLD, 15));
+      btnKoniec.setForeground(Color.DARK_GRAY);
+      btnKoniec.setBackground(new Color(241, 57, 83));
+      btnKoniec.addActionListener(new ActionListener()
+      {
+
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            frame.setVisible(false);
+            Vyhladavanie.pracaSUctom();
+
+         }
+      });
+      menuBar.add(btnKoniec);
+   }
+}

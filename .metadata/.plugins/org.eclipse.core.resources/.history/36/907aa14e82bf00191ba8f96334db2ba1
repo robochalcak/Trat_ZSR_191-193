@@ -1,0 +1,24 @@
+package sk.itvkurze.webinar24.nesynchronizovany_bankovy_ucet;
+
+public class Vklad implements Runnable
+{
+
+   private BankovyUcet ucet;
+   private double ciastka;
+   private Object pocetOpakovani;
+
+   public Vklad(BankovyUcet ucet, double ciastka, int pOCET_OPAKOVANI)
+   {
+      this.ucet = ucet;
+      this.ciastka = ciastka;
+      this.pocetOpakovani=pocetOpakovani;
+   }
+
+   @Override
+   public void run()
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+}
