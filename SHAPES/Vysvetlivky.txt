@@ -1,0 +1,15 @@
+64 - vysokı trolej pre ŠRT
+1k - jednoko¾ajnı
+2k - dvojko¾ajnı
+LP - trolej smeruje z¾ava doprava
+PL - trolej smeruje zprava do¾ava
+ZV - zosilòovacie vedenie (pouívané na jednosmernej trakcii)
+bs - bez ståpov (samotné drôty, vhodné na implementáciu k inım druhom ståpov)
+zlava - trakèné pole so ståpom z ¾avej strany
+
+Ako rozmiesòova :
+
+Na zaèiatok musíme potrebné súbory zapísa do súboru GANTRY, rozmiestòujeme na vzdialenos 50 m (dåka drôtov).
+
+Najlepšie je zaèa v priamom úseku bez sklonu. V príslušnom štvorci automaticky rozmiestnime napr. 1kTV64_LP_ZV a potom 1kTV64_PL_ZV. Pretoe to máme zdup¾ované, zaèneme vyhadzova nepotrebné. V kadom nepárnom poli vyhodíme LP, v kadom párnom PL. Vısledkom je cik-cak trolej. V priamej trati bez sklonu netreba viacej niè upravova, musí to všetko pasova...
+V oblúkoch a na sklonoch musíme doladi v editore polohu troleja, aby to lícovalo. Chce to trochu námahy a trpezlivosti ale vısledok stojí za to.

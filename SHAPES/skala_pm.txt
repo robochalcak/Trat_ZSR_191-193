@@ -1,0 +1,25 @@
+stavebnice skalního masívu
+
+skala05_pm.s     rozmìr pøibližnì 5x5metrù
+skala10_pm.s     rozmìr pøibližnì 10x10metrù
+skala20_pm.s     rozmìr pøibližnì 20x20metrù 
+skala50_pm.s     rozmìr pøibližnì 50x50metrù
+
+3D model - Mates
+textury - Mates               
+podklady pro texturu - stavitelXX      2009_11_10
+  
+
+
+
+------------------------------------------- 
+FREEWARE
+! I když je model zadarmo, je stále majetkem autora(ù). BEZ JEHO (JEJICH) SOUHLASU NESMÍ 
+být archiv ani jeho èásti distribuovány na webu (vyjma stránek urèených autorem(y)) nebo 
+na CD, a V ŽÁDNÉM PØÍPADÌ NESMÍ BÝT PRODÁVÁN nebo obsažen v PLACENÉM ADD-ONU. Vyjímku urèí 
+autor(autoøi).	
+
+-------------------------------------------
+
+pavel.matousek@seznam.cz     ICQ 304 727 039         Skype  matespavel
+

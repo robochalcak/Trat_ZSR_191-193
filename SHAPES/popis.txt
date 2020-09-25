@@ -1,0 +1,48 @@
+potrubi100_40-100.s
+potrubi100_40-20.s
+potrubi100_40-2S10.s
+potrubi100_40-2Z10.s
+potrubi100_40-50.s
+potrubi100_40-50-5.s
+potrubi100_40-L.s
+potrubi100_40-S10.s
+potrubi100_40-U10.s
+potrubi100_40-U10-5.s
+potrubi100-100.s
+potrubi100-20.s
+potrubi100-50.s
+potrubi100-50-5.s
+potrubi100-L.s
+potrubi100-U10.s
+potrubi100-U10-5.s
+potrubi-podpera-5B.s
+
+3D model - Mates
+textury - Mates          2011_10_19
+fotodokumentace,podklady pro textury - David Hájek 
+
+
+potrubi100-L45.s
+potrubi100-L22_5.s
+potrubi100_40-L45.s
+potrubi100_40-L22_5.s    2012_01_11   
+
+potrubi100_40-2S.s
+potrubi100_40-3S.s
+potrubi100_40-U10-6.s
+potrubi100_40-Z6.s
+potrubi100_40-S6.s       2012_01_20   
+
+------------------------------------------- 
+FREEWARE
+
+!!!!!!! Model is freeware. It is forbidden to spread parts of model, include textures to other simulators or offer in some commercial projects, 
+or publish on other websites, exceptions make author -(s) !!!!!!!
+
+
+!!!!!!! Model je freeware. Je zakázané šíøit jakékoliv èasti modelu, vèetnì textur do jiných simulátorù a nebo nabízet ho v jakýchkoliv komerèních projektech, èi zveøejòovat na jiných webech, výjímku urèí autor(autoøi) !!!!!!!
+
+-------------------------------------------
+
+pavel.matousek@seznam.cz     ICQ 304 727 039         Skype  matespavel
+
