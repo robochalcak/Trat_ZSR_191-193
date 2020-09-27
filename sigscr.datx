@@ -1,11 +1,11 @@
 <<<<<<< HEAD
 //////////////////////////////////////////////////
 //
-//  Script pro nÃ¡vesti CeskÃ½ch Drah verze 2.2
+//  Script pro návesti Ceských Drah verze 2.2
 //
-//  JirÃ­ PolÃ¡k jiripolak@volny.cz
+//  Jirí Polák jiripolak@volny.cz
 //
-//  Modely nÃ¡vestidel: JirÃ­ PolÃ¡k jiripolak@volny.cz
+//  Modely návestidel: Jirí Polák jiripolak@volny.cz
 //
 //////////////////////////////////////////////////
 
@@ -8546,7 +8546,7 @@ SCRIPT 0F_BEALLITO
 			}
 		}
 	}
-	else										// TÃ¶bb Ãºtvonal van
+	else										// Több útvonal van
 	{
 		if (this_state ==# SIGASP_CLEAR_1 && block_state () ==# BLOCK_CLEAR)					// INFO_Max
 		{
@@ -8683,7 +8683,7 @@ SCRIPT 0F_BEALLITO
 		{
 			state = SIGASP_STOP_AND_PROCEED;
 		}
-		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// TovÃ¡bbi Ãºtvonal tolatÃ¡sra
+		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// További útvonal tolatásra
 		{
 			state = SIGASP_RESTRICTING;			
 		}
@@ -9219,7 +9219,7 @@ SCRIPT 0F_FELOLDO
 			}
 		}
 	}
-	else										// TÃ¶bb Ãºtvonal van
+	else										// Több útvonal van
 	{
 		if (this_state ==# SIGASP_CLEAR_1 && block_state () ==# BLOCK_CLEAR)					// INFO_Max
 		{
@@ -9356,7 +9356,7 @@ SCRIPT 0F_FELOLDO
 		{
 			state = SIGASP_STOP_AND_PROCEED;
 		}
-		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// TovÃ¡bbi Ãºtvonal tolatÃ¡sra
+		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// További útvonal tolatásra
 		{
 			state = SIGASP_RESTRICTING;			
 		}
@@ -36754,11 +36754,11 @@ SCRIPT Jelzestovabbitas
 =======
 //////////////////////////////////////////////////
 //
-//  Script pro nÃ¡vesti CeskÃ½ch Drah verze 2.2
+//  Script pro návesti Ceských Drah verze 2.2
 //
-//  JirÃ­ PolÃ¡k jiripolak@volny.cz
+//  Jirí Polák jiripolak@volny.cz
 //
-//  Modely nÃ¡vestidel: JirÃ­ PolÃ¡k jiripolak@volny.cz
+//  Modely návestidel: Jirí Polák jiripolak@volny.cz
 //
 //////////////////////////////////////////////////
 
@@ -45299,7 +45299,7 @@ SCRIPT 0F_BEALLITO
 			}
 		}
 	}
-	else										// TÃ¶bb Ãºtvonal van
+	else										// Több útvonal van
 	{
 		if (this_state ==# SIGASP_CLEAR_1 && block_state () ==# BLOCK_CLEAR)					// INFO_Max
 		{
@@ -45436,7 +45436,7 @@ SCRIPT 0F_BEALLITO
 		{
 			state = SIGASP_STOP_AND_PROCEED;
 		}
-		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// TovÃ¡bbi Ãºtvonal tolatÃ¡sra
+		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// További útvonal tolatásra
 		{
 			state = SIGASP_RESTRICTING;			
 		}
@@ -45972,7 +45972,7 @@ SCRIPT 0F_FELOLDO
 			}
 		}
 	}
-	else										// TÃ¶bb Ãºtvonal van
+	else										// Több útvonal van
 	{
 		if (this_state ==# SIGASP_CLEAR_1 && block_state () ==# BLOCK_CLEAR)					// INFO_Max
 		{
@@ -46109,7 +46109,7 @@ SCRIPT 0F_FELOLDO
 		{
 			state = SIGASP_STOP_AND_PROCEED;
 		}
-		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// TovÃ¡bbi Ãºtvonal tolatÃ¡sra
+		else if (sig_feature ( SIGFEAT_GRADIENT_PLATE ) )			// További útvonal tolatásra
 		{
 			state = SIGASP_RESTRICTING;			
 		}
