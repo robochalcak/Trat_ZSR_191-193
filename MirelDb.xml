@@ -396,4 +396,48 @@
     <Id>4762</Id>
     <Value>a</Value>
   </Signal>
+  <Signal>
+    <Id>4657</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>4637</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>4020</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>3552</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>3210</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>3052</Id>
+    <Value>b</Value>
+  </Signal>
+  <Signal>
+    <Id>2646</Id>
+    <Value>a</Value>
+  </Signal>
+  <Signal>
+    <Id>2667</Id>
+    <Value>a</Value>
+  </Signal>
+  <Signal>
+    <Id>2627</Id>
+    <Value>a</Value>
+  </Signal>
+  <Signal>
+    <Id>33</Id>
+    <Value>a</Value>
+  </Signal>
+  <Signal>
+    <Id>758</Id>
+    <Value>b</Value>
+  </Signal>
 </MirelDb>
